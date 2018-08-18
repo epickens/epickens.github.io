@@ -1,0 +1,16 @@
+name: "Data-Pun-TBD"
+navbar:
+  title: "Data Pun TBD"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Main Content"
+      href: content.html
+    - text: "Other Posts"
+      href: guest_posts.html
+    - text: "About"
+      href: about.html
+    - text: "Contact"
+      href: contact.html
+      
+    
