@@ -2,4 +2,14 @@
 title: "Data Pun TBD"
 ---
 
-Hello, Website
+#### __Join this Blog's Google Group__
+
+Get email updates about new posts or changes to the blog through its Google Group. Join [here](http://groups.google.com/group/data-pun-tbd "Data Pun TBD Google Group") or send an email to [data.pun.tbd@gmail.com](mailto:data.pun.tbd@gmail.com).
+
+#### __Recent Posts__
+
++ [Older Posts](content.html)
+
+#### __Check Out My Other Posts__
+
++ [Other Posts](guest_posts.html)

@@ -2,4 +2,6 @@
 title: "Other Posts"
 ---
 
-Other Posts
+You can see some other posts I've made here.
+
++ [Carleton Algo Club](https://carletonalgoclub.github.io/ "Carleton Algo Club")
