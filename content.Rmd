@@ -4,4 +4,5 @@ title: "Main Content"
 
 * <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
 * <h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h>
+* <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
 
