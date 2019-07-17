@@ -2,4 +2,6 @@
 title: "Main Content"
 ---
 
-New Posts Coming Soon!
+* <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+* <h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h>
+
