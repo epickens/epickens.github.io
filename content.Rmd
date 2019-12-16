@@ -2,7 +2,13 @@
 title: "Main Content"
 ---
 
-* <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
-* <h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h>
-* <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
++ <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
+    + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
++ [Some Notes on Reinforcement Learning](https://github.com/epickens/Reinforcement-Learning)
++ <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+    + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
++ <h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h>
++ <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
+    + [GitHub Link](https://github.com/chi-raag/paraphraseDetection)
+
 
