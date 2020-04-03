@@ -2,6 +2,10 @@
 title: "Main Content"
 ---
 
++ <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
+    + [GitHub Link](https://github.com/epickens/Comps)
++ <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
+    + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
 + <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
     + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
 + [Some Notes on Reinforcement Learning](https://github.com/epickens/Reinforcement-Learning)
@@ -12,4 +16,8 @@ title: "Main Content"
 + <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
     + [GitHub Link](https://github.com/chi-raag/paraphraseDetection)
 + [Quick Analysis of Metro Transit Dwell Times](Slides.html)
+
+A few outside posts:
+
++ [Carleton Algo Club](https://carletonalgoclub.github.io/ "Carleton Algo Club")
 
