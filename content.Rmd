@@ -6,8 +6,6 @@ title: "Main Content"
     + [GitHub Link](https://github.com/epickens/Comps)
 + <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
     + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
-+ <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
-    + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
 + [Some Notes on Reinforcement Learning](https://github.com/epickens/Reinforcement-Learning)
 + <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
     + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
@@ -16,6 +14,7 @@ title: "Main Content"
 + <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
     + [GitHub Link](https://github.com/chi-raag/paraphraseDetection)
 + [Quick Analysis of Metro Transit Dwell Times](Slides.html)
++ <h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies in Wellington and Colorado Springs)</a></h>
 
 A few outside posts:
 
