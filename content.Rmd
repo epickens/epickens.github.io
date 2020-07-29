@@ -4,7 +4,7 @@ title: "Main Content"
 
 + <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
     + [GitHub Link](https://github.com/epickens/Comps)
-+ <h><a href="AI_Final.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
++ <h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
     + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
 + [Some Notes on Reinforcement Learning](https://github.com/epickens/Reinforcement-Learning)
 + <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
