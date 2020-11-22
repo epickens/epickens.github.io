@@ -14,6 +14,10 @@ title: "Data Pun TBD"
     + [GitHub Link](https://github.com/chi-raag/paraphraseDetection)
 + [Other Posts](content.html)
 
+###### __If You Have Any Questions You Can Reach Me Here: [eeepickens@gmail.com](mailto:eeepickens@gmail.com)__
+
+---
 #### __Join this Blog's Google Group__
 
 Get email updates about new posts or changes to the blog through its Google Group. Join [here](http://groups.google.com/group/data-pun-tbd "Data Pun TBD Google Group") or send an email to [data.pun.tbd@gmail.com](mailto:data.pun.tbd@gmail.com).
+---
