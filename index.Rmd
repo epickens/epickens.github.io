@@ -1,6 +1,9 @@
 ---
 title: "Data Pun TBD"
 ---
+#### __New Series on Bayesian Statistics__
+
+I'm going to be working on a short introduction to Bayesian Statistics through a series of posts on the fundamentals of the subject. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
 
 #### __Featured Posts__
 
