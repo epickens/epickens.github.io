@@ -5,6 +5,10 @@ title: "Data Pun TBD"
 
 I'm going to be working on a short introduction to Bayesian Statistics through a series of posts on the fundamentals of the subject. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
 
+#### __ COVID Data Challenge Expo__
+
+I'm going to be participating in this year's Data Challenge Expo. This year the American Statistical Association in centering the porject around the newly available and ever important COVID data. I plan on posting about my progess here, so check back soon!
+
 #### __Featured Posts__
 
 + <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
@@ -18,6 +22,8 @@ I'm going to be working on a short introduction to Bayesian Statistics through a
 + [Other Posts](content.html)
 
 ###### __If You Have Any Questions You Can Reach Me Here: [eeepickens@gmail.com](mailto:eeepickens@gmail.com)__
+
+###### __Or check follow me on twitter for real time updates [ElliotPickens](https://twitter.com/ElliotPickens)__
 
 ---
 #### __Join this Blog's Google Group__
