@@ -5,7 +5,7 @@ title: "Data Pun TBD"
 
 I'm going to be working on a short introduction to Bayesian Statistics through a series of posts on the fundamentals of the subject. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
 
-#### __ COVID Data Challenge Expo__
+#### __COVID Data Challenge Expo__
 
 I'm going to be participating in this year's Data Challenge Expo. This year the American Statistical Association in centering the porject around the newly available and ever important COVID data. I plan on posting about my progess here, so check back soon!
 
