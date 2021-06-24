@@ -1,13 +1,9 @@
 ---
 title: "Data Pun TBD"
 ---
-#### __New Series on Bayesian Statistics__
+#### __New Series on Probability & Statistics__
 
-I'm going to be working on a short introduction to Bayesian Statistics through a series of posts on the fundamentals of the subject. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
-
-#### __COVID Data Challenge Expo__
-
-I'm going to be participating in this year's Data Challenge Expo. This year the American Statistical Association in centering the porject around the newly available and ever important COVID data. I plan on posting about my progess here, so check back soon!
+I'm going to be working on a short introduction to Probability & Statistics through a series of posts on the fundamentals of the subjects. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
 
 #### __Featured Posts__
 
@@ -25,8 +21,10 @@ I'm going to be participating in this year's Data Challenge Expo. This year the 
 
 ###### __Or check follow me on twitter for real time updates [ElliotPickens](https://twitter.com/ElliotPickens)__
 
+<!--
 ---
 #### __Join this Blog's Google Group__
 
 Get email updates about new posts or changes to the blog through its Google Group. Join [here](http://groups.google.com/group/data-pun-tbd "Data Pun TBD Google Group") or send an email to [data.pun.tbd@gmail.com](mailto:data.pun.tbd@gmail.com).
 ---
+-->

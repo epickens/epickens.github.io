@@ -1,7 +1,7 @@
 ---
 title: "Main Content"
 ---
-
++ <h><a href="rv_p1.pdf">Random Variables Pt. 1</a></h>
 + <h><a href="bayes_theorem.pdf">Intro to Bayes' Theorem</a></h>
 + <h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h>
 + <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
@@ -20,5 +20,5 @@ title: "Main Content"
 
 A few outside posts:
 
-+ [Carleton Algo Club](https://carletonalgoclub.github.io/ "Carleton Algo Club")
++ [Carleton Data Science Club](https://carletonalgoclub.github.io/ "Carleton Algo Club")
 
