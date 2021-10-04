@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Elliot Pickens" />
+  <meta name="dcterms.date" content="2021-05-25" />
+  <title>Random Variables Pt. 2</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Random Variables Pt. 2</h1>
+<p class="author">Elliot Pickens</p>
+<p class="date">May 25, 2021</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#bivaraite-distributions">Bivaraite Distributions</a>
+<ul>
+<li><a href="#what-is-a-bivariate-distribution">What is a Bivariate Distribution?</a>
+<ul>
+<li><a href="#discrete-bivariate-distributions">Discrete Bivariate Distributions</a></li>
+<li><a href="#continuous-bivariate-distributions">Continuous Bivariate Distributions</a></li>
+<li><a href="#mixed-bivariate-distributions">Mixed Bivariate Distributions</a></li>
+<li><a href="#bivariate-cdfs">Bivariate CDFs</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#marginal-distributions">Marginal Distributions</a>
+<ul>
+<li><a href="#pfpdfs-of-marginal-distributions">PF/PDFs of Marginal Distributions</a></li>
+<li><a href="#independence">Independence</a></li>
+</ul></li>
+<li><a href="#conditional-distributions">Conditional Distributions</a>
+<ul>
+<li><a href="#discrete-conditional-distributions">Discrete Conditional Distributions</a></li>
+<li><a href="#continuous-conditional-distributions">Continuous Conditional Distributions</a>
+<ul>
+<li><a href="#mixed-conditional-distributions">Mixed Conditional Distributions</a></li>
+</ul></li>
+<li><a href="#multiplication-rule-for-conditional-distributions-and-more">Multiplication Rule for Conditional Distributions (and More)</a>
+<ul>
+<li><a href="#law-of-total-probability-for-distributions">Law of Total Probability for Distributions</a></li>
+<li><a href="#bayes-theorem-for-random-variables">Bayes’ Theorem for Random Variables</a></li>
+</ul></li>
+<li><a href="#conditional-distributions-of-independent-random-variables">Conditional Distributions of Independent Random Variables</a></li>
+<li><a href="#conditional-distributions-are-distributions">Conditional Distributions are Distributions!</a></li>
+</ul></li>
+<li><a href="#multivariate-distributions">Multivariate Distributions</a>
+<ul>
+<li><a href="#vector-notation-for-random-variables">Vector Notation for Random Variables</a></li>
+<li><a href="#multivariate-joint-distributions">Multivariate Joint Distributions</a>
+<ul>
+<li><a href="#discrete-distributions">Discrete Distributions</a></li>
+<li><a href="#continuous-distributions">Continuous Distributions</a></li>
+<li><a href="#mixed-distributions">Mixed Distributions</a></li>
+</ul></li>
+<li><a href="#marginal-distributions-1">Marginal Distributions</a></li>
+<li><a href="#independence-1">Independence</a>
+<ul>
+<li><a href="#random-samples">Random Samples</a></li>
+</ul></li>
+<li><a href="#conditional-distributions-1">Conditional Distributions</a>
+<ul>
+<li><a href="#bayes-theorem-and-the-law-of-total-probability">Bayes’ Theorem and the Law of Total Probability</a></li>
+<li><a href="#conditional-independence">Conditional Independence</a></li>
+<li><a href="#conditional-editions-of-misc.-theorems">Conditional Editions of misc. Theorems</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+</nav>
+<h1 id="intro">Intro</h1>
+<p>The content of this post will center around slightly more advanced distributions than the univariate ones I covered in part one. We’ll begin by taking the natural step of combining two univariate distributions into a single bivariate distribution and then work towards more general multivariate distributions. Along the way we’ll touch on marginal and conditional distributions, which are key to understanding multivariate distributions and the many methodologies that use them.</p>
+<h1 id="bivaraite-distributions">Bivaraite Distributions</h1>
+<p>Some processes cannot be modeled with a distribution based upon a single random variable. When problems become complicated and data gets more varied we need to incorporate multiple random variables at the same time. It’s easy enough to work with a number of different random variables at the same time, but what if we want to unify them under a single distribution? To do that we have to explore the world of joint distributions. We’ll start that search with the simplest joint distribution: the joint distribution of two random variables, which is also known as a bivariate distribution.  </p>
+<h2 id="what-is-a-bivariate-distribution">What is a Bivariate Distribution?</h2>
+<p>Recall that the distribution of a random variable is the collection of probabilities tied to its potential events. Once we have two random variables their <em>joint</em> or <em>bivariate</em> distribution is the set of probability values for every possible pair of events that our variables could produce. More precisely, the distribution consists of all the values of the form <span class="math inline">\(P((X,Y)\in C)\)</span> where <span class="math inline">\(C\)</span> is the set of all pairs of reals <span class="math inline">\((X,Y)\)</span> that are events.  </p>
+<h3 id="discrete-bivariate-distributions">Discrete Bivariate Distributions</h3>
+<p>We have discrete and continuous <em>joint</em> distributions, just as we do for solo random variables. For example, if we have only a finite (or possibly countable) number of order pairs <span class="math inline">\((X,Y)\)</span> for two random variables <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> then their joint distribution is a discrete one. Naturally, such a joint distribution is most likely to occur when both <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> are discrete, since both <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> must have finite or countable number of possible values and therefore the two of them cannot have more than a countable number of pairs.  </p>
+<p>We’ll get into continuous joint distributions soon, but before we can get there we need to introduce joint probability functions. These functions which are often shortened to "joint <em>pf</em>" are defined on the xy-plane as follows:</p>
+<p><span class="math display">\[f(x,y) = P(X=x\:\&amp;\:Y=y)\]</span></p>
+<p>For discrete joint pfs the probability of a set of ordered pairs (where <span class="math inline">\(f(x,y) = 0\)</span> if <span class="math inline">\((x,y)\)</span> is not a possible pair) is</p>
+<p><span class="math display">\[P((x,y)\in C) = \sum_{(x,y)\in C}^{} f(x,y)\]</span></p>
+<p>And the probability of all possible pairs results in the equality</p>
+<p><span class="math display">\[\sum_{All\: (x,y)}^{} f(x,y) = 1\]</span></p>
+<p>You might recognize that the equations we laid out for discrete joint pfs are near identical to those of their univariate cousins. The only difference in these equations is that they depend on ordered pairs rather than single points. In both cases we are summing over a set of events to find probabilities, but I would like to draw attention to our use of a single summation in these definitions. Does it make sense to frame the task of solving for a probability via a joint pf as one summation? The answer is sometimes, but not always. If we are summing over multiple values from each random variable then it is much easier in practice to write things out as a nested summation where each variable get its own term. I won’t get in too much detail on this here, but it should become more explicitly clear why a double sum is useful when we restate things in the continuous context.</p>
+<h3 id="continuous-bivariate-distributions">Continuous Bivariate Distributions</h3>
+<p>We say that two random variables <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> have a continuous bivariate distribution if they can be used to define a function <span class="math inline">\(f\)</span> on the xy-plane with the property that the probability of any subset of the plane <span class="math inline">\(C\)</span> is</p>
+<p><span class="math display">\[P((x,y)\in C) = \int_{C}^{}\int f(x,y)dxdy \label{eq_cont_dist}\]</span></p>
+<p>When this integral exists we call <span class="math inline">\(f\)</span> the joint probability density function, or joint pdf of <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span>. As was the case of single dimensional pdfs, joint pdfs have a closure (or support) defined as <span class="math inline">\(\{(x,y) | f(x,y) &gt;0\}\)</span>.  </p>
+<p>A valid joint pdf must abide by two conditions: <span class="math display">\[f(x,y) \geq 0 \: for \: -\infty &lt; x &lt; \infty \: and \: -\infty &lt; y &lt; \infty \label{p1}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy=1 \label{p2}\]</span></p>
+<p>These conditions should be reminiscent of those for single variable pdfs. The conditions have just been extended to include the second variable present in bivariate pdfs, while otherwise remaining unchanged - as has been the case for all of the bivariate definitions we’ve encountered.  </p>
+<p>The consequences of these definitions also carry over. The use of integrals in these definitions still implies that any finite or countable set of points on the plane will have a probability value of 0. When dealing with bivariate distributions, however, we must remember that when integrating to find probability we are solving for a "volume" rather than an area. This implies that slices of the distribution with 0 "volume" have 0 probability. Therefore integration over any set of points where we hold the value of one of our two variables constant will have a probability of 0. More formally, any sets of the form <span class="math inline">\(\{(x,y) | y=f(x), a&lt;x&lt;b\}\)</span> or <span class="math inline">\(\{(x,y) | x=f(y), a&lt;y&lt;b\}\)</span> have a probability of 0.</p>
+<h3 id="mixed-bivariate-distributions">Mixed Bivariate Distributions</h3>
+<p>What if we want to find the joint distribution of multiple random variables when some are continuous and others are discrete. At first, it might seem odd to be blending these different types of random variables, but it’s far more common and far less complicated than you might think. To make it work we just need to divide things along the lines the two variable types. That is to say that we integrate where we need to integrate, and sum where we need to sum.  </p>
+<p>To put it all together, we’ll build a mixed bivariate distribution by modifying the integral in equation <a href="#eq_cont_dist" data-reference-type="ref" data-reference="eq_cont_dist">[eq_cont_dist]</a> we used to define the bivariate continuous pdf. Assume we have a discrete random variable <span class="math inline">\(X\)</span> and a continuous random variable <span class="math inline">\(Y\)</span>. And imagine we also have a function <span class="math inline">\(f(x,y)\)</span> that is defined on the xy-plane such that for any pair <span class="math inline">\(A\)</span> &amp; <span class="math inline">\(B\)</span> of sets of real numbers,</p>
+<p><span class="math display">\[P(X\in A \: and\: Y\in B) = \int_{B}\sum_{x\in A} f(x,y)dy \label{eq_cont_dist}\]</span></p>
+<p>Then <span class="math inline">\(f\)</span> is the joint pdf of <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> if such an integral exists. Of course, if we were to switch things up and make <span class="math inline">\(Y\)</span> continuous and <span class="math inline">\(X\)</span> discrete then we could simply rearrange the equation above to match the integral and sum to their correct variables. It is also possible to switch the order of the sum and integral should it be easier one way or another (and proper care is taken during the rearrangement).  </p>
+<p>Now that we have our new joint pdf we can quickly restate the properties <a href="#p1" data-reference-type="ref" data-reference="p1">[p1]</a> &amp; <a href="#p2" data-reference-type="ref" data-reference="p2">[p2]</a> by saying that for a discrete <span class="math inline">\(X\)</span> and continuous <span class="math inline">\(Y\)</span> <span class="math inline">\(f(x,y) \geq 0 \: \forall \: x,y\)</span> and</p>
+<p><span class="math display">\[\int_{-\infty}^{\infty}\sum_{i=1}^{\infty} f(x_i,y)dy=1\]</span></p>
+<p>since the total probability must be <span class="math inline">\(1\)</span> as always.</p>
+<h3 id="bivariate-cdfs">Bivariate CDFs</h3>
+<p>Having introduced several different types of pfs and pdfs it’s time to touch on their cdfs. The bivariate cumulative distribution function of two random variables <span class="math inline">\(X\)</span> &amp; <span class="math inline">\(Y\)</span> is the function <span class="math inline">\(F\)</span> defined on all values of <span class="math inline">\(x\)</span> &amp; <span class="math inline">\(y\)</span> (<span class="math inline">\(-\infty &lt; x &lt; \infty\)</span> &amp; <span class="math inline">\(-\infty &lt; y &lt; \infty\)</span>) as</p>
+<p><span class="math display">\[F(x,y)=P(X\leq x \: and \: Y\leq y)\]</span></p>
+<p>When both variables are continuous we can define this function as</p>
+<p><span class="math display">\[F(x,y) = \int_{-\infty}^{y}\int_{-\infty}^{x} f(r,s)drds\]</span></p>
+<p>where <span class="math inline">\(r\)</span> and <span class="math inline">\(s\)</span> are dummy integration variables. We can then use this definition of the function to derive <span class="math inline">\(f\)</span> by taking the derivative of <span class="math inline">\(F\)</span> as</p>
+<p><span class="math display">\[f(x,y) = \frac{\partial^2 F(x,y)}{\partial x \partial y} = \frac{\partial^2 F(x,y)}{\partial y \partial x}\]</span></p>
+<p>where the this derivative exists.  </p>
+<p>Since probability cannot decrease as we include more points in our region of interest, bivariate cdfs are monotonically increasing in both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (when the other is fixed). This allows use to find the probability of an interval by subtracting pdfs like</p>
+<p><span class="math display">\[\begin{aligned}
+    P(a&lt;X\leq b \:\&amp;\: c&lt;Y\leq d) &amp;= P(a&lt;X\leq b \:\&amp;\: Y\leq d) - P(a&lt;X\leq b \:\&amp;\: Y\leq c) \\
+    &amp;= P(X\leq b \:\&amp;\: Y\leq d) - P(X\leq a \:\&amp;\: Y\leq d) \\
+    &amp; \:\:\:- P(X\leq b \:\&amp;\: Y\leq c) - P(X\leq a \:\&amp;\: Y\leq c) \\
+    &amp;= F(b,d) - F(a,d) - F(b,c) -F(a,c)\end{aligned}\]</span></p>
+<p>It is also possible to derive the single variable cdfs from the bivariate ones they’re included in by using limits. If we want the single variable cdf of <span class="math inline">\(X\)</span>, <span class="math inline">\(F_1\)</span> then we can derive by taking the limit</p>
+<p><span class="math display">\[F_1(x) = lim_{y\to \infty} F(x,y) \label{marg_1}\]</span></p>
+<p>Alternatively we could get <span class="math inline">\(F_2\)</span> for <span class="math inline">\(Y\)</span> by taking the limit</p>
+<p><span class="math display">\[F_2(y) = lim_{x\to \infty} F(x,y) \label{marg_2}\]</span></p>
+<p>I’m going to leave out the proof that such limits do in fact produce the single variable versions of the cdf, but it can easily be worked out by observing that the limit <span class="math inline">\(lim_{m\to \infty} P(\{X\leq x \:\&amp;\: Y\leq m\})\)</span> is equal to the sum of the probability of <span class="math inline">\(\{X\leq x \:\&amp;\: n-1 &lt; Y &lt;n\} \:\forall\: n\)</span>.</p>
+<h1 id="marginal-distributions">Marginal Distributions</h1>
+<p>We just saw how the cdf of a (bivariate) joint distribution can be used to derive the cdf of just one of the random variables used to construct it. Oddly enough, working backwards from a joint distribution to isolate a single random variable is often necessary. When we derive the distribution of a random variable <span class="math inline">\(X\)</span> from a joint distribution we call it the marginal distribution of <span class="math inline">\(X\)</span>. All random variables present in a joint distribution have a marginal distribution, and each of those distributions comes complete with its own marginal cdf and pf/pdf.</p>
+<h2 id="pfpdfs-of-marginal-distributions">PF/PDFs of Marginal Distributions</h2>
+<p>Although they weren’t introduced as marginal cdfs, the single variable cdfs we derived in <a href="#marg_1" data-reference-type="ref" data-reference="marg_1">[marg_1]</a> and <a href="#marg_2" data-reference-type="ref" data-reference="marg_2">[marg_2]</a> are marginal cdfs of their respective random variables. The pf/pdfs tied to these cdfs are the marginal pf/pdfs of their random variables.  </p>
+<p>Stepping away from cdfs, if we want to analyze marginal pdfs and pfs in isolation it’s best to start from a joint pf or pdf. To do this let’s assume that we have a discrete joint distribution of the random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> with a joint pf <span class="math inline">\(f\)</span>. Then the marginal pf of <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[f_1(x)= \sum_{All\: y} f(x,y)\]</span></p>
+<p>and the marginal pf of <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[f_2(y)= \sum_{All\: x} f(x,y) \label{marg_4}\]</span></p>
+<p>The implication of these sums is that the probability that <span class="math inline">\(X=x\)</span> or <span class="math inline">\(Y=y\)</span> is found by inspecting the union of all events where <span class="math inline">\(X=x\)</span> or <span class="math inline">\(Y=y\)</span>. In other words we have to look at all the ordered pairs where the single variable event of interest occurs.  </p>
+<p>Finding the marginal pdfs of continuous distributions follows the same process, but with the standard swapping of a sum for an integral. Thus, for a joint continuous distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> the marginal pdf of a random variable <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[f_1(x) = \int_{-\infty}^{\infty} f(x,y)dy \quad for\: -\infty &lt; x &lt; \infty \label{marg_3}\]</span></p>
+<p>and the marginal pdf of <span class="math inline">\(Y\)</span> is the same as <a href="#marg_3" data-reference-type="ref" data-reference="marg_3">[marg_3]</a> with <span class="math inline">\(y\)</span> substituted for <span class="math inline">\(x\)</span> and <span class="math inline">\(dy\)</span> converted to <span class="math inline">\(dx\)</span>. We can easily show that <span class="math inline">\(f_1\)</span> is a marginal pdf by noticing that <span class="math inline">\(P(X\leq x) = P((X,Y)\in C)\)</span> where <span class="math inline">\(C = \{(r,s)|r\leq x\}\)</span> which is</p>
+<p><span class="math display">\[\begin{aligned}
+    P((X,Y)\in C) &amp;= \int_{-\infty}^{x}\int_{-\infty}^{\infty} f(r,s)dsdr \\
+    &amp;= \int_{-\infty}^{x} \left[ \int_{-\infty}^{\infty} f(r,s)ds \right] dr\end{aligned}\]</span></p>
+<p>and that <span class="math inline">\(\int_{-\infty}^{\infty} f(r,s)ds = f_1(r)\)</span>. Then <span class="math inline">\(P(X&lt;x) = \int_{-\infty}^{x} f_1(r) dr\)</span> and <span class="math inline">\(f_1\)</span> is our marginal pdf.  </p>
+<p>In the case of a mixed bivariate distribution, where one random variable is continuous and the other is discrete the marginal distributions maintain the nature of their parent variable. This means that if we have a mixed joint distribution with a continuous <span class="math inline">\(X\)</span> and discrete <span class="math inline">\(Y\)</span> the pdf of <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[P(X=x) = f_1(x) = \int_{-\infty}^{\infty} f(x,y)dy \quad \forall\: x\]</span></p>
+<p>and the pf of <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[f_2(y)= \sum_{All\: x} f(x,y) \quad \forall\: y\]</span></p>
+<h2 id="independence">Independence</h2>
+<p>Many probability questions and statements have included the necessary note that "independence is assumed" or something of the like. Intuitively we understand that saying two random variables are independent means that they have no relation to one another and that the state of one doesn’t impact the state of the other. If, however, we want to be more precise we can say that two random variables are independent if for any two sets of real <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> where <span class="math inline">\(\{X\in A\}\)</span> and <span class="math inline">\(\{Y\in B\}\)</span></p>
+<p><span class="math display">\[P(X\in A \:\&amp;\: Y\in B) = P(X\in A) P(Y\in B) \label{indep_1}\]</span></p>
+<p>By this equation we get that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent so long as all possible events of the sort like <span class="math inline">\(\{X\in A\}\)</span> and <span class="math inline">\(\{Y\in B\}\)</span> are independent. And we can also say that the independence of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> implies that</p>
+<p><span class="math display">\[P(X\leq x \:\&amp;\: Y\leq y) = P(X\leq x) P(Y\leq y) \label{indep_2}\]</span></p>
+<p>for all reals <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. We can also see that <a href="#indep_2" data-reference-type="ref" data-reference="indep_2">[indep_2]</a> implies <a href="#indep_1" data-reference-type="ref" data-reference="indep_1">[indep_1]</a>, so long as <a href="#indep_2" data-reference-type="ref" data-reference="indep_2">[indep_2]</a> is true for all real numbers.  </p>
+<p>Independence also impacts cdfs. The joint cdf of two independent random variables is the product of their solo cdfs. We can strengthen this statement by asserting that two variables are independent if and only if <span class="math inline">\(F(x,y) = F_1(x)F_2(y)\)</span> for all reals <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.  </p>
+<p>The joint pf/pdf of independent random variables mirrors what we just stated was true of joint cdfs. Two random variables are only independent if and only if their joint pf/pdf <span class="math inline">\(f\)</span> can be written as</p>
+<p><span class="math display">\[f(x,y) = h_1(x)h_2(y) \label{indep_3}\]</span></p>
+<p>for <span class="math inline">\(-\infty&lt;x&lt;\infty\)</span> and <span class="math inline">\(-\infty&lt;y&lt;\infty\)</span>, where <span class="math inline">\(h_1\)</span> is a nonnegative function of <span class="math inline">\(x\)</span> and <span class="math inline">\(h_2\)</span> is a nonnegative function of <span class="math inline">\(y\)</span>. Although we used generic nonnegative functions in <a href="#indep_3" data-reference-type="ref" data-reference="indep_3">[indep_3]</a> we can narrow the statement with the corollary that</p>
+<p><span class="math display">\[f(x,y) = f_1(x)f_2(y)\]</span></p>
+<p>for any two independent random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.  </p>
+<p>Before wrapping up this section I would like to end with a few comments on the interpretation of independence. All the definitions I’ve laid out state that any entanglement that would normally be present in a joint distribution can be completely negated through factorization. That factorization is a mathematical way of saying that knowing that event that one of the random variables takes on tells us nothing about what event the other might take on. For example, for any <span class="math inline">\(y\)</span> we might learn that <span class="math inline">\(Y=y\)</span>, but this has zero impact on any of the events <span class="math inline">\(\{X=x\}\)</span>. Alternatively we could say that the probability <span class="math inline">\(X=x\)</span> given <span class="math inline">\(Y=y\)</span> is just <span class="math inline">\(P(X=x)\)</span>, or in the grammar of conditional probability <span class="math inline">\(P(X=x|Y=y)=P(X=x)\)</span>.</p>
+<h1 id="conditional-distributions">Conditional Distributions</h1>
+<p>When we ask for the probability of some event <span class="math inline">\(A\)</span> given some event <span class="math inline">\(B\)</span> has already taken place we’re asking to solve for the conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span>. This sort of calculation is incredibly useful, but what if we want to generalize it to work on the level of distributions? Then we instead ask how some random variable <span class="math inline">\(Y\)</span> affects another random variable <span class="math inline">\(X\)</span>, and answer by finding the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>.  </p>
+<p>Recall that the definition of conditional probability is <span class="math inline">\(P(A|B)=\frac{P(A\cap B)}{P(B)}\)</span>. We can generalize this definition to work for two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> with a joint distribution <span class="math inline">\(f\)</span> by defining the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> (where <span class="math inline">\(f_2(y)&gt;0\)</span>) as</p>
+<p><span class="math display">\[g_1(x|y)=\frac{f(x,y)}{f_2(y)} \label{cond_1}\]</span></p>
+<p>Similarly, <span class="math inline">\(g_2(y|x)=\frac{f(x,y)}{f_1(x)}\)</span> (where <span class="math inline">\(f_1(x) &gt;0\)</span>) would be the conditional distribution (or conditional pf/pdf) of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>. </p>
+<h2 id="discrete-conditional-distributions">Discrete Conditional Distributions</h2>
+<p>When <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a discrete joint distribution we can confirm that their conditional distributions are true pfs. Looking at <span class="math inline">\(g_1(x|y)\)</span>, assume <span class="math inline">\(f_2(y) &gt; 0\)</span>, so <span class="math inline">\(g_1(x|y)\geq0 \: \forall \: x\)</span>. Then</p>
+<p><span class="math display">\[\sum_{x} g_1(x|y) = \frac{1}{f_2(y)}\sum_{x} f(x,y) = \frac{1}{f_2(y)}f_2(y)=1\]</span></p>
+<p>Thus, we know that <span class="math inline">\(g_1\)</span> is a proper pf. <span class="math inline">\(g_2(y|x)\)</span> abides by the same logic and can be verified by exchanging variables. We should also note that for <span class="math inline">\(g_1\)</span>, <span class="math inline">\(g_2\)</span>, and all other conditional distributions we can define them as needed for values that would result in a zero in the denominator.</p>
+<h2 id="continuous-conditional-distributions">Continuous Conditional Distributions</h2>
+<p>The formula for the pdf of a continuous conditional distribution is no different than that of its discrete counter part. In fact, it is exactly the same as <a href="#cond_1" data-reference-type="ref" data-reference="cond_1">[cond_1]</a>, but the formula does not tell us everything. For continuous conditional distributions we cannot just define our pdf at the points where <span class="math inline">\(f_2(y)&gt;0\)</span>. Instead we must define it over all possible values of our random variable of interest. Thus, <span class="math inline">\(g_1(x|y)\)</span> is defined for <span class="math inline">\(-\infty &lt;x&lt; \infty\)</span>, and can even be defined for points where <span class="math inline">\(f_2(y)=0\)</span> (so long as <span class="math inline">\(g_1\)</span> remains a valid pdf). We can verify that <a href="#cond_1" data-reference-type="ref" data-reference="cond_1">[cond_1]</a> is a valid pdf by noticing that if <span class="math inline">\(f_2(y)=0\)</span> then we can just choose a pdf for <span class="math inline">\(g_1\)</span>, and for all other cases where <span class="math inline">\(f_2(t)&gt;0\)</span></p>
+<p><span class="math display">\[\int_{-\infty}^{\infty} g_1(x|y)dx = \int_{-\infty}^{\infty} \frac{f(x,y)}{f_2(y)}dx = \frac{1}{f_2(y)} \int_{-\infty}^{\infty} f(x,y)dx = \frac{f_2(y)}{f_2(y)}=1\]</span></p>
+<p>In might seem mundane to have to read through me repeatedly state and then restate each of these definitions for both discrete and continuous distributions, and in practice much of this is somewhat inconsequential sans a swapping of a sum for a integral here or there. But if we want to really understand what is going on behind the curtain we need to pay as close attention as possible. An example of why this matters is present here when we ask the question of what it means to condition <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> when <span class="math inline">\(Y=y\)</span>. Each individual event <span class="math inline">\(\{Y=y\}\)</span> has zero probability if <span class="math inline">\(Y\)</span> is a continuous distribution, so what are we doing when we condition on it? The answer is that we aren’t really conditioning on <span class="math inline">\(\{Y=y\}\)</span>, but rather <span class="math inline">\(\{y-\epsilon &lt; Y &lt; y+\epsilon \}\)</span>. This allows us to work with an interval in <span class="math inline">\(Y\)</span> that is sufficiently large for a (possibly) non zero-probability, while not being large enough to make a visible difference to us as users of the formula (given we can choose <span class="math inline">\(\epsilon\)</span> to be as small as we want). Therefore, in the continuous case we are really just conditioning <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> where <span class="math inline">\(Y\)</span> is incredibly close to <span class="math inline">\(y\)</span>.</p>
+<h3 id="mixed-conditional-distributions">Mixed Conditional Distributions</h3>
+<p>The conditional distribution of a mixed distribution follows <a href="#cond_1" data-reference-type="ref" data-reference="cond_1">[cond_1]</a> just like pure joint distributions. We just have to remember to swap variables and summation/integration terms as needed.</p>
+<h2 id="multiplication-rule-for-conditional-distributions-and-more">Multiplication Rule for Conditional Distributions (and More)</h2>
+<p>The rule that <span class="math inline">\(P(A\cap B) = P(A)P(B|A)\)</span> for individual events, and can be easily expanded to work for pf/pdfs of distributions. To show this, let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have pf/pdfs <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> respectively, and combine to form the joint distribution <span class="math inline">\(f\)</span> with conditional distributions <span class="math inline">\(g_1\)</span> and <span class="math inline">\(g_2\)</span>. Then for each <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(f_2(y)&gt;0\)</span></p>
+<p><span class="math display">\[f(x,y) = g_1(x|y)f_2(y) \label{cond_2}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[f(x,y)=g_2(y|x)f_1(x) \label{cond_3}\]</span></p>
+<h3 id="law-of-total-probability-for-distributions">Law of Total Probability for Distributions</h3>
+<p>Given the relationship between conditional distributions and joint pf/pdfs shown in <a href="#cond_2" data-reference-type="ref" data-reference="cond_2">[cond_2]</a> and <a href="#cond_3" data-reference-type="ref" data-reference="cond_3">[cond_3]</a> we can easily generalize the law of total probability to the distribution level by noticing that we can get the marginal distributions <span class="math inline">\(f_1\)</span> from <span class="math inline">\(f\)</span> as</p>
+<p><span class="math display">\[f_1(x) = \sum_y g_1(x|y)f_2(y)\]</span></p>
+<p>for a discrete random variable <span class="math inline">\(Y\)</span> and</p>
+<p><span class="math display">\[f_1(x) = \int_{-\infty}^{\infty} g_1(x|y)f_2(y)dy\]</span></p>
+<p>And we can also get <span class="math inline">\(f_2(y)\)</span> if we wanted to by simply swapping things around to set things up correctly.</p>
+<h3 id="bayes-theorem-for-random-variables">Bayes’ Theorem for Random Variables</h3>
+<p>Recall that Bayes’ Theorem for two events is <span class="math inline">\(P(A|B) = \frac{P(B|A)P(A)}{P(B)}\)</span>. For distributions it remains the same, but with individual probabilities replaced by pf/pdfs to create</p>
+<p><span class="math display">\[g_1(x|y) = \frac{g_2(y|x)f_1(x)}{f_2(y)}\]</span></p>
+<p>by equating <a href="#cond_2" data-reference-type="ref" data-reference="cond_2">[cond_2]</a> and <a href="#cond_3" data-reference-type="ref" data-reference="cond_3">[cond_3]</a> and then rearranging them as needed.</p>
+<h2 id="conditional-distributions-of-independent-random-variables">Conditional Distributions of Independent Random Variables</h2>
+<p>What if <span class="math inline">\(X\)</span> is conditioned on <span class="math inline">\(Y\)</span> when the two random variables are independent? Well we stumble upon yet another definition of independence. That is that two random variables are independent if and only if for all values <span class="math inline">\(x\)</span> and all values of <span class="math inline">\(y\)</span> where <span class="math inline">\(f_2(y)&gt;0\)</span> we get</p>
+<p><span class="math display">\[g_1(x|y) = f_1(x) \label{cond_4}\]</span></p>
+<p>We can show this by remember that two random variables are independent if and only if <span class="math inline">\(f(x,y) = f_1(x)f_2(y)\)</span> for <span class="math inline">\(-\infty&lt;x&lt;\infty\)</span> and <span class="math inline">\(-\infty&lt;y&lt;\infty\)</span>. Then for <span class="math inline">\(f_2(y)&gt;0\)</span> we get <span class="math inline">\(f_1(x) = \frac{f(x,y)}{f_2(y)}\)</span> and since <span class="math inline">\(\frac{f(x,y)}{f_2(y)} = g_1(x|y)\)</span> then <span class="math inline">\(f_1(x) = g_1(x|y)\)</span> hold for all <span class="math inline">\(x\)</span> &amp; <span class="math inline">\(y\)</span> where <span class="math inline">\(f_2(y)&gt;0\)</span>.</p>
+<h2 id="conditional-distributions-are-distributions">Conditional Distributions are Distributions!</h2>
+<p>Although the setup of conditional distributions can be a little confusing it is important to remember that they are distributions and act like them! Everything we know about the behavior of regular distributions also applies here whether we’re solving for probability on an interval or doing anything else!</p>
+<h1 id="multivariate-distributions">Multivariate Distributions</h1>
+<p>Now that we’ve had a look at joint, marginal, and conditional distributions we can generalize them to an arbitrary number of random variables. In applied settings (especially in the era of big data) we often want to build models based off of many different variables, or make inferences from complex data sets where intricate relationships are present. To make these sorts of models and analyses work we need to make sure we can manipulate and combine as many random variables as we could possibly need.  </p>
+<p>In this section I’m going to spend some time revising what I’ve shown leading up to this point in the post to make sure they work in a multivariate setting. Please beware that this section is going to cover quite a few different definitions in rapid succession without very much exposition unless otherwise necessary. Hopefully it’ll become clear why that is the case while reading through it, but the basic fact of importance here is that these definitions are almost identical to their bivariate siblings.  </p>
+<h2 id="vector-notation-for-random-variables">Vector Notation for Random Variables</h2>
+<p>When workings with a large sequence of random variables it is not convenient or expeditious to continually state something along the lines of "the joint distributions of <span class="math inline">\(X_1,X_2,...,X_n\)</span>..." each time we’d like to talk about a problem with <span class="math inline">\(n\)</span> random variables involved. Instead we can use vector notation. A "random vector" <span class="math inline">\(\textbf{X}\)</span> is the vectorized form of the <span class="math inline">\(n\)</span> random variables <span class="math inline">\(X_1,...,X_n\)</span>, which can be written as <span class="math inline">\(\textbf{X}= (X_1,...,X_n)\)</span>. We can use these vectors to shorten common statements like <span class="math inline">\(F(X_1,...,X_n)\)</span> down to a concise <span class="math inline">\(F(\textbf{x})\)</span>. Keep in mind that each random vector <span class="math inline">\(\textbf{X}\)</span> is <span class="math inline">\(n\)</span>-dimensional and therefore whatever function it is inserted into (like <span class="math inline">\(F(x)\)</span>) must be defined on that same <span class="math inline">\(n\)</span>-dimensional space.  </p>
+<p>Throughout the remainder of this section I’ll be primarily using vector notation. I’ll try my best to put these vectors in bold.</p>
+<h2 id="multivariate-joint-distributions">Multivariate Joint Distributions</h2>
+<p>For <span class="math inline">\(n\)</span> random variables <span class="math inline">\(X_1,...,X_n\)</span> the joint cdf of all <span class="math inline">\(n\)</span> variables is the function <span class="math inline">\(F\)</span> whose output is defined in <span class="math inline">\(\mathbb{R}^n\)</span> as</p>
+<p><span class="math display">\[F(x_{1},...,x_{n}) =P(X_{1}\leq x_{1}, X_2\leq x_2,...,X_n\leq x_n)\]</span></p>
+<p>or in vector notation</p>
+<p><span class="math display">\[F(\textbf{x})=P(\textbf{X}\leq \textbf{x})\]</span></p>
+<p>This multivariate cdf operates in an identical manner to the univariate and bivariate cdfs we’ve already seen. It also satisfies all of the properties we laid out earlier in this post for bivariate cdfs.</p>
+<h3 id="discrete-distributions">Discrete Distributions</h3>
+<p>For discrete joint distributions where our random vector <span class="math inline">\(\textbf{X}\)</span> can only take on a finite or countable number of values we define the joint pf as</p>
+<p><span class="math display">\[f(\textbf{x})=P(\textbf{X}=\textbf{x})\]</span></p>
+<p>for all <span class="math inline">\(\textbf{x} \in \mathbb{R}^n\)</span>. We can also find the probability of a subset <span class="math inline">\(C\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> by computing</p>
+<p><span class="math display">\[P(\textbf{X}\in C)=\sum_{x\in C} f(\textbf{x})\]</span></p>
+<h3 id="continuous-distributions">Continuous Distributions</h3>
+<p>The pdf of purely continuous joint distributions is defined as a non-negative function for which the integral</p>
+<p><span class="math display">\[P((X_1,...,X_n)\in C) = \int_{C}...\int f(x_1,...,x_n)dx_1...dx_n\]</span></p>
+<p>exists on all intervals <span class="math inline">\(C \subset \mathbb{R}^n\)</span>. In it’s vectorized form we can write it as</p>
+<p><span class="math display">\[P(\textbf{X}\in C) = \int_{C}...\int f(\textbf{x})d\textbf{x}\]</span></p>
+<p>We can also define <span class="math inline">\(f\)</span> as the derivative of its cdf (at least all points where its derivative exists). To do this we just need to take the partial derivative of <span class="math inline">\(F\)</span> for all <span class="math inline">\(n\)</span> random variables to get</p>
+<p><span class="math display">\[f(\textbf{x}) = \dfrac{\partial^n F(\textbf{X})}{\partial x_1...\partial x_n}\]</span></p>
+<h3 id="mixed-distributions">Mixed Distributions</h3>
+<p>Some problems require a mixture of continuous and discrete random variables. For a joint distributions of this sort we might have <span class="math inline">\(j\)</span> continuous random variables and <span class="math inline">\(k\)</span> discrete random variables (with <span class="math inline">\(j+k=n\)</span>). Under such conditions we just have to make sure to mix our sums and integrals correctly. With bivariate mixed distributions we always had one summation term associated with the discrete variable and an integral tied to the continuous one. The same rule applies in the general context. Summations go with the discrete variables and integrals go with the continuous ones. Returning to our example of solving for <span class="math inline">\(P(\textbf{X}\in C)\)</span>, if <span class="math inline">\(\textbf{X}\)</span> is mixed then our solution will include <span class="math inline">\(j\)</span> summations and <span class="math inline">\(k\)</span> integrals rather than just <span class="math inline">\(n\)</span> integrals.</p>
+<h2 id="marginal-distributions-1">Marginal Distributions</h2>
+<p>A joint distribution of <span class="math inline">\(n\)</span> random variables also has marginal distributions for each of the random variables. Let’s assume we have a joint distribution of the random variables <span class="math inline">\(X_1,X_2,...,X_n\)</span> and we want to find the marginal distribution of <span class="math inline">\(X_1\)</span>. Then we can use the same process we used in <a href="#marg_3" data-reference-type="ref" data-reference="marg_3">[marg_3]</a>, and integrate over all variables except <span class="math inline">\(X_1\)</span> to find its marginal distribution <span class="math inline">\(f_1\)</span>. The sort of nested integral we would need to find <span class="math inline">\(f_1\)</span> would look like</p>
+<p><span class="math display">\[f_1(x_1)= \underbrace{\int_{-\infty}^{\infty}...\int_{-\infty}^{\infty}}_{n-1} f(x_1...x_n)dx_2...dx_n\]</span></p>
+<p>Marginal distributions of just one random variable are fairly straight forward, but it is possible to generalize the concept of a marginal distribution further when working with more than two random variables. We can find the marginal distribution of any <span class="math inline">\(k\)</span> random variables (where <span class="math inline">\(k &lt; n\)</span>). All we need to do is integrate over the <span class="math inline">\(n-k\)</span> variables we are not interested in including in our marginal distribution. Imagine once again we have <span class="math inline">\(n\)</span> random variables <span class="math inline">\(X_1,...,X_n\)</span>, but this time we want to find a marginal distribution of the first <span class="math inline">\(k\)</span> random variables. That is to say we want to find the marginal distribution of all <span class="math inline">\(X_i\)</span> where <span class="math inline">\(i \leq k\)</span>. To do this we could use the calculation</p>
+<p><span class="math display">\[\label{m_marg_1}
+    f_{1...k}(x_1, x_2,...,x_k)= \underbrace{\int_{-\infty}^{\infty}...\int_{-\infty}^{\infty}}_{n-k} f(x_1...x_n)dx_{k+1}...dx_n\]</span></p>
+<p>We can also find a marginal cdf of a joint distribution in the same way we did in <a href="#marg_1" data-reference-type="ref" data-reference="marg_1">[marg_1]</a>. By expanding upon that relation to work in the context of having an arbitrary number of variables we can find the marginal cdf <span class="math inline">\(F_1\)</span> of <span class="math inline">\(X_1\)</span> from a joint cdf <span class="math inline">\(F\)</span> via the relation</p>
+<p><span class="math display">\[\begin{aligned}
+F_1(x_1)&amp;=P(X_1\leq x_1)=P(X_1\leq x_1,X_2&lt;\infty,...,X_n&lt;\infty) \\
+&amp;= \lim_{x_2,...,x_n\to\infty}F(x_1,x_2,...,x_n)\end{aligned}\]</span></p>
+<h2 id="independence-1">Independence</h2>
+<p>Independence can be generalized to greater quantities of random variables if we modify our original definitions. The first way we can do this is to say that <span class="math inline">\(n\)</span> random variables are independent of one another if for every <span class="math inline">\(n\)</span> set of real numbers: <span class="math inline">\(A_1,A_2,...,A_3\)</span> the following relationship holds:</p>
+<p><span class="math display">\[P(X_1\in A_1,X_2\in A_2,...,X_n\in A_n) = P(X_1\in A_1)P(X_2\in A_2)...P(X_n\in A_n)\]</span></p>
+<p>Second, we can say that if our <span class="math inline">\(n\)</span> random variables have a joint cdf <span class="math inline">\(F\)</span> then they can only be independent if and only if</p>
+<p><span class="math display">\[F(x_1,...,x_2)=F_1(x_1)...F_n(x_n)\]</span></p>
+<p>is true for all points <span class="math inline">\((x_1,...,x_n) \in \mathbb{R}^n\)</span>. In plain terms, our collection of random variables can only be independent if their joint cdf can be written as the product of all of their marginal cdfs.  </p>
+<p>Third, if our <span class="math inline">\(n\)</span> random variables have a joint pf/pdf then they are independent if and only if their joint pf/pdf <span class="math inline">\(f\)</span> can be written as the product of their individual marginal pf/pdfs at all points <span class="math inline">\((x_1,...,x_n) \in \mathbb{R}^n\)</span>. We can write out this relation as</p>
+<p><span class="math display">\[f(x_1,...,x_2)=f_1(x_1)...f_n(x_n)\]</span></p>
+<h3 id="random-samples">Random Samples</h3>
+<p>Let’s assume we have a distribution with a pf/pdf <span class="math inline">\(f\)</span>. Then we say that <span class="math inline">\(n\)</span> random variables <span class="math inline">\(X_1,...,X_n\)</span> are a random sample if they are all independent of one another and all have the marginal pf/pdf <span class="math inline">\(f\)</span>. We can also say that these random variables are independent and identically distributed or i.i.d. with a sample size of <span class="math inline">\(n\)</span>.  </p>
+<p>The joint distribution of our i.i.d. sample is then</p>
+<p><span class="math display">\[g(x_1,...,x_2)=f(x_1)...f(x_n)\]</span></p>
+<h2 id="conditional-distributions-1">Conditional Distributions</h2>
+<p>In <a href="#m_marg_1" data-reference-type="ref" data-reference="m_marg_1">[m_marg_1]</a> we found the marginal distribution of <span class="math inline">\(k &lt; n\)</span> random variables. Let’s call this marginal distribution <span class="math inline">\(f_{1...k}\)</span>. Now how might we use that marginal distribution to find the conditional distribution of the remaining <span class="math inline">\(n-k\)</span> random variables? The answer lies in <a href="#marg_1" data-reference-type="ref" data-reference="marg_1">[marg_1]</a>. Using that relation (<span class="math inline">\(\text{conditional}=\frac{\text{total pf/pdf}}{\text{marginal}}\)</span>) we can then solve for the conditional distribution of <span class="math inline">\(X_{k+1},...,X_{n}\)</span> given <span class="math inline">\(X_1=x_1,...,X_k=x_k\)</span> using</p>
+<p><span class="math display">\[\label{m_cond_1}
+g_{k+1...n}(x_{k+1},...,x_{n}|x_1,...,x_k) = \dfrac{f(x_1,...,x_n)}{f_{1...k}(x_1,...,x_k)}\]</span></p>
+<p>The definition of a multivariate conditional pf/pdf follows directly from these example. In this example we have the random vector <span class="math inline">\(\textbf{X}=(X_1,...,X_n)\)</span>, and the two sub-vectors <span class="math inline">\(\textbf{Y}=(X_1,...,X_k)\)</span> and <span class="math inline">\(\textbf{Z}=(X_{k+1},...,X_n)\)</span>. We also have the joint pf/pdf of <span class="math inline">\(\textbf{X}\)</span> (which is also <span class="math inline">\((\textbf{Y}, \textbf{Z})\)</span>) <span class="math inline">\(f\)</span> and the marginal pf/pdf of <span class="math inline">\(\textbf{Y}\)</span> <span class="math inline">\(f_{1...k}\)</span>. Then the conditional distribution of <span class="math inline">\(\textbf{Z}\)</span> given <span class="math inline">\(\textbf{Y}=\textbf{y}\)</span> for every point <span class="math inline">\(\textbf{y}\in \mathbb{R}^{k}\)</span> where <span class="math inline">\(f_{1...k}(\textbf{y})&gt;0\)</span> is</p>
+<p><span class="math display">\[\label{m_cond_2}
+    g_1(\textbf{z}|\textbf{y}) = \dfrac{f(\textbf{y},\textbf{z})}{f_{1...k}(\textbf{y})}\]</span></p>
+<p>And can be rewritten as</p>
+<p><span class="math display">\[g_1(\textbf{z}|\textbf{y})f_{1...k}(\textbf{y}) = f(\textbf{y},\textbf{z})\]</span></p>
+<p>It is also safe to assume that <span class="math inline">\(f(\textbf{y},\textbf{z})=0\)</span> when <span class="math inline">\(f_{1...k}(\textbf{y})=0\)</span>, so <a href="#m_cond_2" data-reference-type="ref" data-reference="m_cond_2">[m_cond_2]</a> holds for all <span class="math inline">\(\textbf{y}\)</span> and <span class="math inline">\(\textbf{z}\)</span>, but it also means that <span class="math inline">\(g_1\)</span> is not unique given our interference at points where <span class="math inline">\(f_{1...k}(\textbf{y})=0\)</span>.</p>
+<h3 id="bayes-theorem-and-the-law-of-total-probability">Bayes’ Theorem and the Law of Total Probability</h3>
+<p>Using the definition of a multivariate conditional distribution shown in <a href="#m_cond_2" data-reference-type="ref" data-reference="m_cond_2">[m_cond_2]</a> we can show the marginal pdf of <span class="math inline">\(\textbf{z}\)</span> is</p>
+<p><span class="math display">\[\label{m_t_prob}
+    f_{k+1...n}(\textbf{z})= \underbrace{\int_{-\infty}^{\infty}...\int_{-\infty}^{\infty}}_{k} g_1(\textbf{z}|\textbf{y}) f_{1...k}(\textbf{y})d\textbf{y}\]</span></p>
+<p>using the total law of probability. And the conditional pdf of <span class="math inline">\(\textbf{Y}\)</span> given <span class="math inline">\(\textbf{Z}=\textbf{z}\)</span> will be</p>
+<p><span class="math display">\[\label{m_bayes}
+    g_2(\textbf{y}|\textbf{z})= \dfrac{g_1(\textbf{z}|\textbf{y})f_{1...k}(\textbf{y})}{f_{k+1...n}(\textbf{z})}\]</span></p>
+<p>by Bayes’ Theorem.  </p>
+<p>Once again <a href="#m_t_prob" data-reference-type="ref" data-reference="m_t_prob">[m_t_prob]</a> will need to be altered if we’re working with a mixed or discrete joint distribution to include summations as needed.</p>
+<h3 id="conditional-independence">Conditional Independence</h3>
+<p>We touched a little on how we can define two variables as being independent using conditional distributions in <a href="#cond_4" data-reference-type="ref" data-reference="cond_4">[cond_4]</a>, but there is another type of independence that we have not yet touched upon. That is conditional independence. Conditional independence centers around whether some number of variables are independent given some random vector <span class="math inline">\(\textbf{Z}\)</span>. Thus, when checking for conditional independence we aren’t testing whether the random variables are independent in the pure sense, but whether they’re independent after being conditioned on some other set of random variables.  </p>
+<p>To define this, assume <span class="math inline">\(\textbf{Z}\)</span> is a random vector with a joint pf/pdf <span class="math inline">\(f_0(\textbf{z})\)</span>. Then some set of <span class="math inline">\(n\)</span> random variables <span class="math inline">\(X_1,...,X_n\)</span> are conditionally independent given <span class="math inline">\(\textbf{Z}\)</span> if we can say that for each <span class="math inline">\(\textbf{z}\)</span> where <span class="math inline">\(f_0(\textbf{z})&gt;0\)</span></p>
+<p><span class="math display">\[\label{m_c_indep}
+    g(\textbf{x}|\textbf{z})=\prod_{i=1}^n g_i(x_i|\textbf{z})\]</span></p>
+<p>Therefore, our <span class="math inline">\(n\)</span> random variables are conditionally independent if the conditional distribution (<span class="math inline">\(g(\textbf{x}|\textbf{z})\)</span>) of <span class="math inline">\(\textbf{X}\)</span> given <span class="math inline">\(\textbf{Z}=\textbf{z}\)</span> is equal to the product of the conditional distributions of each individual random variables <span class="math inline">\(X_i\)</span>. </p>
+<p><strong>Note:</strong> independence is a special case of conditional independence. To quickly sketch the proof, imagine that we have a set of independent random variables <span class="math inline">\(X_1,...,X_n\)</span> that we condition on some constant random variable <span class="math inline">\(W\)</span> where <span class="math inline">\(P(W=c)=1\)</span> . Then we want to show <a href="#m_c_indep" data-reference-type="ref" data-reference="m_c_indep">[m_c_indep]</a> is true. First, notice that <span class="math inline">\(W\)</span> is independent to every <span class="math inline">\(X_i\)</span>, so <span class="math inline">\(g_i(x_i|w)=\dfrac{f(x_i,w)}{f_0(w)}=\dfrac{f_i(x_i)f_0(w)}{f_0(w)}=f_i(x_i)\)</span> and <span class="math inline">\(g(\textbf{x}|w)= f(\textbf{x})\)</span> (by the same logic). Thus, <span class="math inline">\(g(\textbf{x}|w) = f(\textbf{x}) = \prod_{i=1}^{n}f_i(x_i) = \prod_{i=1}^{n} g_i(x_i|w)\)</span>. As a result on it’s own this is not particularly interesting, but it does give us the ability to say that anything we prove from conditionally independent random variables is also true of standard independent random vairables.</p>
+<h3 id="conditional-editions-of-misc.-theorems">Conditional Editions of misc. Theorems</h3>
+<p>Before moving on from multivariate conditional distributions we should remind ourselves that just as we mentioned in section 4.5, conditional distributions are distributions. That means each and every one of the theorems we’ve touched on has a conditional version. Let’s take <a href="#m_t_prob" data-reference-type="ref" data-reference="m_t_prob">[m_t_prob]</a> as an example. We can find it’s conditional version by conditioning it on some other random vector <span class="math inline">\(\textbf{W}=\textbf{w}\)</span> to produce</p>
+<p><span class="math display">\[\label{c_tprob}
+    f_{k+1...n}(\textbf{z}|\textbf{w})= \underbrace{\int_{-\infty}^{\infty}...\int_{-\infty}^{\infty}}_{k} g_1(\textbf{z}|\textbf{y}, \textbf{w}) f_{1...k}(\textbf{y}|\textbf{w})d\textbf{y}\]</span></p>
+<p>where the structure of the equation remains the same, but with all terms being conditioned on <span class="math inline">\(\textbf{W}=\textbf{w}\)</span>. Along the same lines we rewrite <a href="#m_bayes" data-reference-type="ref" data-reference="m_bayes">[m_bayes]</a> using the say method to get the conditional version of Bayes’ Theorem, which is</p>
+<p><span class="math display">\[\label{c_bayes}
+    g_2(\textbf{y}|\textbf{z}, \textbf{w})= \dfrac{g_1(\textbf{z}|\textbf{y}, \textbf{w})f_{1...k}(\textbf{y}|\textbf{w})}{f_{k+1...n}(\textbf{z}|\textbf{w})}\]</span></p>
+<p>Based on the examples <a href="#c_bayes" data-reference-type="ref" data-reference="c_bayes">[c_bayes]</a> and <a href="#c_tprob" data-reference-type="ref" data-reference="c_tprob">[c_tprob]</a> it might be apparent that generally we can find the conditional version of theorems of interest by conditioning all probabilistic terms of an equation on <span class="math inline">\(\textbf{W}=\textbf{w}\)</span>. This should work on all probabilistic concepts from the most basic individual probability to expected values and beyond.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this post we covered quite a bit. We touched on the most important facts about joint distributions without all too much detail, but hopefully enough to spark a little interest. If I didn’t cover any particular topic in a satisfactory manner please feel free to reach out and let me know (I might just be inclined to go and rewrite it up). I plan on returning to a number of these topics in the future with a much finer toothed comb, but for now I hope this was a decent introduction.  </p>
+<p>In my next post (which I hope will be much shorter) I’ll discuss functions of random variable. I think that’ll more or less close out my series on the basics of random variables, but I might also include a bonus post if I’m feeling energetic.</p>
+<h1 id="acknowledgments">Acknowledgments</h1>
+<p>These notes were based on <em>Probability and Statistics (Fourth Edition)</em> by DeGroot &amp; Schervish.</p>
+</body>
+</html>

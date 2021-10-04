@@ -3,10 +3,14 @@ title: "Main Content"
 ---
 Series on Probability and Statistics:
 
-+ <h><a href="rv4.pdf">Random Variables Pt. 4 (Markov Chains)</a></h>
-+ <h><a href="rv3.pdf">Random Variables Pt. 3 (Functions of a Random Variable)</a></h>
-+ <h><a href="rv2.pdf">Random Variables Pt. 2 (Multivariate Distributions)</a></h>
-+ <h><a href="rv_p1.pdf">Random Variables Pt. 1 (The Basics)</a></h>
++ [Random Variables Pt. 4 (Markov Chains)](rv4.html)
+    + <h><a href="rv4.pdf">(PDF) Random Variables Pt. 4 (Markov Chains)</a></h>
++ [Random Variables Pt. 3 (Functions of a Random Variable)](rv3.html)
+    + <h><a href="rv3.pdf">(PDF) Random Variables Pt. 3 (Functions of a Random Variable)</a></h>
++ [Random Variables Pt. 2 (Multivariate Distributions)](rv2.html)
+    + <h><a href="rv2.pdf">(PDF) Random Variables Pt. 2 (Multivariate Distributions)</a></h>
++ [Random Variables Pt. 1 (The Basics)](rv1.html)
+    + <h><a href="rv_p1.pdf">(PDF) Random Variables Pt. 1 (The Basics)</a></h>
 + <h><a href="bayes_theorem.pdf">Intro to Bayes' Theorem</a></h>
 + <h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h>
 
