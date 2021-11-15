@@ -3,6 +3,7 @@ title: "Main Content"
 ---
 Series on Probability and Statistics:
 
++ <h><a href="ex1.pdf">Expectation Pt. 4 (Intro) (PDF)</a></h>
 + [Random Variables Pt. 4 (Markov Chains)](rv4.html)
     + <h><a href="rv4.pdf">(PDF) Random Variables Pt. 4 (Markov Chains)</a></h>
 + [Random Variables Pt. 3 (Functions of a Random Variable)](rv3.html)
