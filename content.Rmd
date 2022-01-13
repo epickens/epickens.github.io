@@ -15,9 +15,10 @@ Series on Probability and Statistics:
 + <h><a href="bayes_theorem.pdf">Intro to Bayes' Theorem</a></h>
 + <h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h>
 
-A few selected past works:
+Selected past works:
 
-+ <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
++ <h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h>
++ <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
     + [GitHub Link](https://github.com/epickens/Comps)
 + <h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
     + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
