@@ -3,6 +3,7 @@ title: "Main Content"
 ---
 Series on Probability and Statistics:
 
++ <h><a href="ex1_2.pdf">Expectation Pt. 3 (Properties of Expectation) (PDF)</a></h>
 + <h><a href="ex2.pdf">Expectation Pt. 2 (Variance) (PDF)</a></h>
 + <h><a href="ex1.pdf">Expectation Pt. 1 (Intro) (PDF)</a></h>
 + [Random Variables Pt. 4 (Markov Chains)](rv4.html)
@@ -18,6 +19,7 @@ Series on Probability and Statistics:
 
 Selected past works:
 
++ <h><a href="nl_is.pdf">Natural Language Image Search</a></h>
 + <h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h>
 + <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
     + [GitHub Link](https://github.com/epickens/Comps)
