@@ -1,7 +1,15 @@
 ---
 title: "Main Content"
 ---
-Series on Probability and Statistics:
+#### __Selected past works:__
+
++ <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
+    + [GitHub Link](https://github.com/epickens/Comps)
++ <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+    + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
++ <h><a href="nl_is.pdf">Natural Language Image Search</a></h>
+
+#### __Series on Probability and Statistics:__
 
 + <h><a href="ex3.pdf">Expectation Pt. 4 (Moments) (PDF)</a></h>
 + <h><a href="ex1_2.pdf">Expectation Pt. 3 (Properties of Expectation) (PDF)</a></h>
@@ -18,8 +26,9 @@ Series on Probability and Statistics:
 + <h><a href="bayes_theorem.pdf">Intro to Bayes' Theorem</a></h>
 + <h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h>
 
-Selected past works:
+#### __Other posts and write-ups:__ 
 
++ <h><a href="dps.pdf">Dynamic Pricing in a Competitive Environment</a></h>
 + <h><a href="nl_is.pdf">Natural Language Image Search</a></h>
 + <h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h>
 + <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
@@ -36,7 +45,7 @@ Selected past works:
 + [Quick Analysis of Metro Transit Dwell Times](Slides.html)
 + <h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies in Wellington and Colorado Springs)</a></h>
 
-A few outside posts:
+#### __A few outside posts:__
 
 + [Carleton Data Science Club](https://carletonalgoclub.github.io/ "Carleton Algo Club")
 
