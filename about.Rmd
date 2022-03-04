@@ -12,4 +12,5 @@ Hopefully this blog will blossom into something more engaging than just a bunch 
 
 + [Recent Posts](content.html)
 -->
+
 + [Main Content](index.html)
