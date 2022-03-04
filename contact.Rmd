@@ -25,4 +25,4 @@ Also, just in case anyone runs across this page is interested in hiring me you c
 
 + <h><a href="ep_cv.pdf">Elliot Pickens CV</a></h>
 -->
-You can also find me on Linkedin [here](https://www.linkedin.com/in/elliot-pickens-21502b142/). 
+You can also find me on Github [here](https://github.com/epickens) and on Linkedin [here](https://www.linkedin.com/in/elliot-pickens-21502b142/). 
