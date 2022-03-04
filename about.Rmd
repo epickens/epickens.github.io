@@ -5,6 +5,8 @@ title: "About"
 Follow along with me on my path to learning about all things related to data. 
 
 This blog is both a place where I write about the various things I'm interested in and a repository for some of my past work. There's a lot of writing on mathematics, statistics, and computer science out there and this is my way of adding to it. It is also an opportunity to practice my communication skills. I can't say that all of my posts are great examples of technical communication, but I hope that at some point in the future they will be. So stay tuned! I might put out a good post at some point in the future!
+
++ [Main Content](index.html)
 <!---
 Data is everywhere, but it seems to me that there is a distinct lack of material that clearly explains how it can be used effectively. My goal for this blog is create a series of tutorials to help those interested in statistics, mathematics, data science, and computer science better understand how we can harness data for good. 
 
@@ -12,5 +14,3 @@ Hopefully this blog will blossom into something more engaging than just a bunch 
 
 + [Recent Posts](content.html)
 -->
-
-+ [Main Content](index.html)
