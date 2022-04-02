@@ -13,8 +13,8 @@
 
 <title>Data Pun TBD</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -232,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -269,28 +273,41 @@ $(document).ready(function () {
 
 <div id="new-series-on-probability-statistics" class="section level4">
 <h4><strong>New Series on Probability &amp; Statistics</strong></h4>
-<p>I’m going to be working on a short introduction to Probability &amp; Statistics through a series of posts on the fundamentals of the subjects. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!</p>
+<p>I’m going to be working on a short introduction to Probability &amp;
+Statistics through a series of posts on the fundamentals of the
+subjects. Stay tuned and check the content page, or follow my twitter
+updates for new releases! The first few are already up and more will be
+coming soon!</p>
 </div>
 <div id="featured-posts" class="section level4">
 <h4><strong>Featured Posts</strong></h4>
 <ul>
-<li><h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
+<li><h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario
+Approach and Guaranteed Error Machines</a></h>
 <ul>
 <li><a href="https://github.com/epickens/Comps">GitHub Link</a></li>
 </ul></li>
-<li><h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+<li><h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference
+with Convolutional Neural Networks</a></h>
 <ul>
-<li><a href="https://www.causeweb.org/usproc/usresp/2019/spring/winners">USRESP Alt Link</a></li>
+<li><a
+href="https://www.causeweb.org/usproc/usresp/2019/spring/winners">USRESP
+Alt Link</a></li>
 </ul></li>
 <li><h><a href="nl_is.pdf">Natural Language Image Search</a></h></li>
-<li><h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h></li>
-<li><h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
+<li><h><a href="citibike.pdf">Modeling Citi Bike
+Availability</a></h></li>
+<li><h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief
+Networks</a></h>
 <ul>
-<li><a href="https://github.com/epickens/Bayesian-Networks">GitHub Link</a></li>
+<li><a href="https://github.com/epickens/Bayesian-Networks">GitHub
+Link</a></li>
 </ul></li>
-<li><h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
+<li><h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase
+Detection</a></h>
 <ul>
-<li><a href="https://github.com/chi-raag/paraphraseDetection">GitHub Link</a> <!--- + [Other Posts](content.html) --></li>
+<li><a href="https://github.com/chi-raag/paraphraseDetection">GitHub
+Link</a> <!--- + [Other Posts](content.html) --></li>
 </ul></li>
 </ul>
 </div>
@@ -298,81 +315,115 @@ $(document).ready(function () {
 <h4><strong>Series on Probability and Statistics:</strong></h4>
 <ul>
 <li><h><a href="ex3.pdf">Expectation Pt. 4 (Moments) (PDF)</a></h></li>
-<li><h><a href="ex1_2.pdf">Expectation Pt. 3 (Properties of Expectation) (PDF)</a></h></li>
+<li><h><a href="ex1_2.pdf">Expectation Pt. 3 (Properties of Expectation)
+(PDF)</a></h></li>
 <li><h><a href="ex2.pdf">Expectation Pt. 2 (Variance) (PDF)</a></h></li>
 <li><h><a href="ex1.pdf">Expectation Pt. 1 (Intro) (PDF)</a></h></li>
 <li><a href="rv4.html">Random Variables Pt. 4 (Markov Chains)</a>
 <ul>
-<li><h><a href="rv4.pdf">(PDF) Random Variables Pt. 4 (Markov Chains)</a></h></li>
+<li><h><a href="rv4.pdf">(PDF) Random Variables Pt. 4 (Markov
+Chains)</a></h></li>
 </ul></li>
-<li><a href="rv3.html">Random Variables Pt. 3 (Functions of a Random Variable)</a>
+<li><a href="rv3.html">Random Variables Pt. 3 (Functions of a Random
+Variable)</a>
 <ul>
-<li><h><a href="rv3.pdf">(PDF) Random Variables Pt. 3 (Functions of a Random Variable)</a></h></li>
+<li><h><a href="rv3.pdf">(PDF) Random Variables Pt. 3 (Functions of a
+Random Variable)</a></h></li>
 </ul></li>
-<li><a href="rv2.html">Random Variables Pt. 2 (Multivariate Distributions)</a>
+<li><a href="rv2.html">Random Variables Pt. 2 (Multivariate
+Distributions)</a>
 <ul>
-<li><h><a href="rv2.pdf">(PDF) Random Variables Pt. 2 (Multivariate Distributions)</a></h></li>
+<li><h><a href="rv2.pdf">(PDF) Random Variables Pt. 2 (Multivariate
+Distributions)</a></h></li>
 </ul></li>
 <li><a href="rv1.html">Random Variables Pt. 1 (The Basics)</a>
 <ul>
-<li><h><a href="rv_p1.pdf">(PDF) Random Variables Pt. 1 (The Basics)</a></h></li>
+<li><h><a href="rv_p1.pdf">(PDF) Random Variables Pt. 1 (The
+Basics)</a></h></li>
 </ul></li>
 <li><h><a href="bayes_theorem.pdf">Intro to Bayes’ Theorem</a></h></li>
-<li><h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h></li>
+<li><h><a href="conditional_probability.pdf">Basics of Conditional
+Probability</a></h></li>
 </ul>
 </div>
 <div id="applied-and-research-projects" class="section level4">
 <h4><strong>Applied and Research Projects:</strong></h4>
 <ul>
-<li><h><a href="dps.pdf">Dynamic Pricing in a Competitive Environment</a></h></li>
+<li><h><a href="dps.pdf">Dynamic Pricing in a Competitive
+Environment</a></h></li>
 <li><h><a href="nl_is.pdf">Natural Language Image Search</a></h></li>
-<li><h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h></li>
-<li><h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
+<li><h><a href="citibike.pdf">Modeling Citi Bike
+Availability</a></h></li>
+<li><h><b><a href="comps.pdf">Optimization Under Uncertainty: The
+Scenario Approach and Guaranteed Error Machines</a></b></h>
 <ul>
 <li><a href="https://github.com/epickens/Comps">GitHub Link</a></li>
 </ul></li>
-<li><h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
+<li><h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief
+Networks</a></h>
 <ul>
-<li><a href="https://github.com/epickens/Bayesian-Networks">GitHub Link</a></li>
+<li><a href="https://github.com/epickens/Bayesian-Networks">GitHub
+Link</a></li>
 </ul></li>
-<li><a href="https://github.com/epickens/Reinforcement-Learning">Some Notes on Reinforcement Learning</a></li>
-<li><h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+<li><a href="https://github.com/epickens/Reinforcement-Learning">Some
+Notes on Reinforcement Learning</a></li>
+<li><h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference
+with Convolutional Neural Networks</a></h>
 <ul>
-<li><a href="https://www.causeweb.org/usproc/usresp/2019/spring/winners">USRESP Alt Link</a></li>
+<li><a
+href="https://www.causeweb.org/usproc/usresp/2019/spring/winners">USRESP
+Alt Link</a></li>
 </ul></li>
 <li><h><a href="hmm_draft.pdf">Hidden Markov Models (DRAFT)</a></h></li>
-<li><h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h></li>
-<li><h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
+<li><h><a href="BayesianProject(1).pdf">Replicating Bayesian
+Distributional Word Embeddings</a></h></li>
+<li><h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase
+Detection</a></h>
 <ul>
-<li><a href="https://github.com/chi-raag/paraphraseDetection">GitHub Link</a></li>
+<li><a href="https://github.com/chi-raag/paraphraseDetection">GitHub
+Link</a></li>
 </ul></li>
-<li><a href="Slides.html">Quick Analysis of Metro Transit Dwell Times</a></li>
-<li><h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies in Wellington and Colorado Springs)</a></h></li>
+<li><a href="Slides.html">Quick Analysis of Metro Transit Dwell
+Times</a></li>
+<li><h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies
+in Wellington and Colorado Springs)</a></h></li>
 </ul>
 </div>
 <div id="miscellaneous-stuff-im-interested-in" class="section level4">
 <h4><strong>Miscellaneous stuff I’m interested in:</strong></h4>
 <ul>
-<li><h><a href="graphs_pt1.pdf">Graph Analysis and Random Graphs</a></h></li>
+<li><h><a href="graphs_pt1.pdf">Graph Analysis and Random
+Graphs</a></h></li>
+<li><h><a href="online_ski_rental.pdf">Online Algorithms: Ski Rental
+Problem</a></h></li>
 </ul>
 </div>
 <div id="a-few-outside-posts" class="section level4">
 <h4><strong>A few outside posts:</strong></h4>
 <ul>
-<li><a href="https://carletonalgoclub.github.io/" title="Carleton Algo Club">Carleton Data Science Club</a></li>
+<li><a href="https://carletonalgoclub.github.io/"
+title="Carleton Algo Club">Carleton Data Science Club</a></li>
 </ul>
 </div>
 <div id="and-the-work-of-some-friends" class="section level4">
 <h4><strong>And the work of some friends:</strong></h4>
 <ul>
 <li><a href="https://chiraaggohel.com/">Chiraag Gohel</a></li>
-<li><a href="https://sites.google.com/view/william-dudarov/home?authuser=1">Will Dudarov</a></li>
+<li><a
+href="https://sites.google.com/view/william-dudarov/home?authuser=1">Will
+Dudarov</a></li>
 </ul>
-<div id="if-you-have-any-questions-you-can-reach-me-here-eeepickensgmail.com" class="section level6">
-<h6><strong>If you have any questions you can reach me here: <a href="mailto:eeepickens@gmail.com">eeepickens@gmail.com</a></strong></h6>
+<div
+id="if-you-have-any-questions-you-can-reach-me-here-eeepickensgmail.com"
+class="section level6">
+<h6><strong>If you have any questions you can reach me here: <a
+href="mailto:eeepickens@gmail.com">eeepickens@gmail.com</a></strong></h6>
 </div>
-<div id="or-check-follow-me-on-twitter-for-real-time-updates-elliotpickens" class="section level6">
-<h6><strong>Or check follow me on twitter for real time updates <a href="https://twitter.com/ElliotPickens">ElliotPickens</a></strong></h6>
+<div
+id="or-check-follow-me-on-twitter-for-real-time-updates-elliotpickens"
+class="section level6">
+<h6><strong>Or check follow me on twitter for real time updates <a
+href="https://twitter.com/ElliotPickens">ElliotPickens</a></strong></h6>
 <!--
 ---
 #### __Join this Blog's Google Group__

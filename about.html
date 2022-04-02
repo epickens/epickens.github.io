@@ -13,8 +13,8 @@
 
 <title>About</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -232,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -267,8 +271,16 @@ $(document).ready(function () {
 </div>
 
 
-<p>Follow along with me on my path to learning about all things related to data.</p>
-<p>This blog is both a place where I write about the various things I’m interested in and a repository for some of my past work. There’s a lot of writing on mathematics, statistics, and computer science out there and this is my way of adding to it. It is also an opportunity to practice my communication skills. I can’t say that all of my posts are great examples of technical communication, but I hope that at some point in the future they will be. So stay tuned! I might put out a good post at some point in the future!</p>
+<p>Follow along with me on my path to learning about all things related
+to data.</p>
+<p>This blog is both a place where I write about the various things I’m
+interested in and a repository for some of my past work. There’s a lot
+of writing on mathematics, statistics, and computer science out there
+and this is my way of adding to it. It is also an opportunity to
+practice my communication skills. I can’t say that all of my posts are
+great examples of technical communication, but I hope that at some point
+in the future they will be. So stay tuned! I might put out a good post
+at some point in the future!</p>
 <ul>
 <li><a href="index.html">Main Content</a> <!---
 Data is everywhere, but it seems to me that there is a distinct lack of material that clearly explains how it can be used effectively. My goal for this blog is create a series of tutorials to help those interested in statistics, mathematics, data science, and computer science better understand how we can harness data for good. 

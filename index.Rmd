@@ -58,6 +58,7 @@ I'm going to be working on a short introduction to Probability & Statistics thro
 #### __Miscellaneous stuff I'm interested in:__
 
 + <h><a href="graphs_pt1.pdf">Graph Analysis and Random Graphs</a></h>
++ <h><a href="online_ski_rental.pdf">Online Algorithms: Ski Rental Problem</a></h>
 
 #### __A few outside posts:__
 
