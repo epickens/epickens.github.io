@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Data Pun TBD</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Pun TBD</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Data Pun TBD</h1>
+
+</div>
+
+
+<!---
+#### __New Series on Probability & Statistics__
+
+I'm going to be working on a short introduction to Probability & Statistics through a series of posts on the fundamentals of the subjects. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
+
+-->
+<div id="publications" class="section level4">
+<h4><strong>Publications</strong></h4>
+<ul>
+<li><h><a href="https://www.cjr.org/analysis/election-politics-front-pages.php">Warped
+Front Pages</a></h></li>
+</ul>
+<!--- + [Other Posts](content.html) -->
+</div>
+<div id="series-on-probability-and-statistics" class="section level4">
+<h4><strong>Series on Probability and Statistics:</strong></h4>
+<ul>
+<li><h><a href="ex3.pdf">Expectation Pt. 4 (Moments) (PDF)</a></h></li>
+<li><h><a href="ex1_2.pdf">Expectation Pt. 3 (Properties of Expectation)
+(PDF)</a></h></li>
+<li><h><a href="ex2.pdf">Expectation Pt. 2 (Variance) (PDF)</a></h></li>
+<li><h><a href="ex1.pdf">Expectation Pt. 1 (Intro) (PDF)</a></h></li>
+<li><a href="rv4.html">Random Variables Pt. 4 (Markov Chains)</a>
+<ul>
+<li><h><a href="rv4.pdf">(PDF) Random Variables Pt. 4 (Markov
+Chains)</a></h></li>
+</ul></li>
+<li><a href="rv3.html">Random Variables Pt. 3 (Functions of a Random
+Variable)</a>
+<ul>
+<li><h><a href="rv3.pdf">(PDF) Random Variables Pt. 3 (Functions of a
+Random Variable)</a></h></li>
+</ul></li>
+<li><a href="rv2.html">Random Variables Pt. 2 (Multivariate
+Distributions)</a>
+<ul>
+<li><h><a href="rv2.pdf">(PDF) Random Variables Pt. 2 (Multivariate
+Distributions)</a></h></li>
+</ul></li>
+<li><a href="rv1.html">Random Variables Pt. 1 (The Basics)</a>
+<ul>
+<li><h><a href="rv_p1.pdf">(PDF) Random Variables Pt. 1 (The
+Basics)</a></h></li>
+</ul></li>
+<li><h><a href="bayes_theorem.pdf">Intro to Bayes’ Theorem</a></h></li>
+<li><h><a href="conditional_probability.pdf">Basics of Conditional
+Probability</a></h></li>
+</ul>
+</div>
+<div id="applied-and-unpublished-projects" class="section level4">
+<h4><strong>Applied and Unpublished Projects:</strong></h4>
+<ul>
+<li><h><b><a href="comps.pdf">Optimization Under Uncertainty: The
+Scenario Approach and Guaranteed Error Machines</a></b></h>
+<ul>
+<li><a href="https://github.com/epickens/Comps">GitHub Link</a></li>
+<li><h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference
+with Convolutional Neural Networks</a></h>
+<ul>
+<li><a
+href="https://www.causeweb.org/usproc/usresp/2019/spring/winners">USRESP
+Alt Link</a></li>
+</ul></li>
+</ul></li>
+<li><h><a href="dps.pdf">Dynamic Pricing in a Competitive
+Environment</a></h></li>
+<li><h><a href="nl_is.pdf">Natural Language Image Search</a></h></li>
+<li><h><a href="citibike.pdf">Modeling Citi Bike
+Availability</a></h></li>
+<li><h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief
+Networks</a></h>
+<ul>
+<li><a href="https://github.com/epickens/Bayesian-Networks">GitHub
+Link</a></li>
+</ul></li>
+<li><a href="https://github.com/epickens/Reinforcement-Learning">Some
+Notes on Reinforcement Learning</a></li>
+<li><h><a href="hmm_draft.pdf">Hidden Markov Models (DRAFT)</a></h></li>
+<li><h><a href="BayesianProject(1).pdf">Replicating Bayesian
+Distributional Word Embeddings</a></h></li>
+<li><h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase
+Detection</a></h>
+<ul>
+<li><a href="https://github.com/chi-raag/paraphraseDetection">GitHub
+Link</a></li>
+</ul></li>
+<li><a href="Slides.html">Quick Analysis of Metro Transit Dwell
+Times</a></li>
+<li><h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies
+in Wellington and Colorado Springs)</a></h></li>
+</ul>
+</div>
+<div id="miscellaneous-learning-materials" class="section level4">
+<h4><strong>Miscellaneous Learning Materials:</strong></h4>
+<ul>
+<li><h><a href="graphs_pt1.pdf">Graph Analysis and Random
+Graphs</a></h></li>
+<li><h><a href="online_ski_rental.pdf">Online Algorithms: Ski Rental
+Problem</a></h></li>
+</ul>
+</div>
+<div id="a-few-outside-posts" class="section level4">
+<h4><strong>A few outside posts:</strong></h4>
+<ul>
+<li><a href="https://carletonalgoclub.github.io/"
+title="Carleton Algo Club">Carleton Data Science Club</a></li>
+</ul>
+</div>
+<div id="and-the-work-of-some-friends" class="section level4">
+<h4><strong>And the work of some friends:</strong></h4>
+<ul>
+<li><a href="https://chiraaggohel.com/">Chiraag Gohel</a></li>
+<li><a
+href="https://sites.google.com/view/william-dudarov/home?authuser=1">Will
+Dudarov</a></li>
+</ul>
+<div
+id="if-you-have-any-questions-you-can-reach-me-here-eeepickensgmail.com"
+class="section level6">
+<h6><strong>If you have any questions you can reach me here: <a
+href="mailto:eeepickens@gmail.com">eeepickens@gmail.com</a></strong></h6>
+</div>
+<div
+id="or-check-follow-me-on-twitter-for-real-time-updates-elliotpickens"
+class="section level6">
+<h6><strong>Or check follow me on twitter for real time updates <a
+href="https://twitter.com/ElliotPickens">ElliotPickens</a></strong></h6>
+<!--
+---
+#### __Join this Blog's Google Group__
+
+Get email updates about new posts or changes to the blog through its Google Group. Join [here](http://groups.google.com/group/data-pun-tbd "Data Pun TBD Google Group") or send an email to [data.pun.tbd@gmail.com](mailto:data.pun.tbd@gmail.com).
+---
+-->
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

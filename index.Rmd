@@ -1,22 +1,18 @@
 ---
 title: "Data Pun TBD"
 ---
+
+<!---
 #### __New Series on Probability & Statistics__
 
 I'm going to be working on a short introduction to Probability & Statistics through a series of posts on the fundamentals of the subjects. Stay tuned and check the content page, or follow my twitter updates for new releases! The first few are already up and more will be coming soon!
 
-#### __Featured Posts__
+-->
 
-+ <h><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></h>
-    + [GitHub Link](https://github.com/epickens/Comps)
-+ <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
-    + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
-+ <h><a href="nl_is.pdf">Natural Language Image Search</a></h>
-+ <h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h>
-+ <h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
-    + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
-+ <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
-    + [GitHub Link](https://github.com/chi-raag/paraphraseDetection)
+#### __Publications__
+
++ <h><a href="https://www.cjr.org/analysis/election-politics-front-pages.php">Warped Front Pages</a></h>
+
 <!--- + [Other Posts](content.html) -->
 
 #### __Series on Probability and Statistics:__
@@ -36,18 +32,18 @@ I'm going to be working on a short introduction to Probability & Statistics thro
 + <h><a href="bayes_theorem.pdf">Intro to Bayes' Theorem</a></h>
 + <h><a href="conditional_probability.pdf">Basics of Conditional Probability</a></h>
 
-#### __Applied and Research Projects:__ 
+#### __Applied and Unpublished Projects:__ 
 
++ <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
+    + [GitHub Link](https://github.com/epickens/Comps)
+  + <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
+    + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
 + <h><a href="dps.pdf">Dynamic Pricing in a Competitive Environment</a></h>
 + <h><a href="nl_is.pdf">Natural Language Image Search</a></h>
 + <h><a href="citibike.pdf">Modeling Citi Bike Availability</a></h>
-+ <h><b><a href="comps.pdf">Optimization Under Uncertainty: The Scenario Approach and Guaranteed Error Machines</a></b></h>
-    + [GitHub Link](https://github.com/epickens/Comps)
 + <h><a href="belief_nets.pdf">A Brief Intro to Bayesian Belief Networks</a></h>
     + [GitHub Link](https://github.com/epickens/Bayesian-Networks)
 + [Some Notes on Reinforcement Learning](https://github.com/epickens/Reinforcement-Learning)
-+ <h><a href="USRESP__Spring_2019___CNN_(3).pdf">Graphical Inference with Convolutional Neural Networks</a></h>
-    + [USRESP Alt Link](https://www.causeweb.org/usproc/usresp/2019/spring/winners)
 + <h><a href="hmm_draft.pdf">Hidden Markov Models (DRAFT)</a></h>
 + <h><a href="BayesianProject(1).pdf">Replicating Bayesian Distributional Word Embeddings</a></h>
 + <h><a href="Paraphrase_Detection_Final_Writeup.pdf">Paraphrase Detection</a></h>
@@ -55,7 +51,7 @@ I'm going to be working on a short introduction to Probability & Statistics thro
 + [Quick Analysis of Metro Transit Dwell Times](Slides.html)
 + <h><a href="cities.pdf">Quantifiying Smart Growth (With Case Studies in Wellington and Colorado Springs)</a></h>
 
-#### __Miscellaneous stuff I'm interested in:__
+#### __Miscellaneous Learning Materials:__
 
 + <h><a href="graphs_pt1.pdf">Graph Analysis and Random Graphs</a></h>
 + <h><a href="online_ski_rental.pdf">Online Algorithms: Ski Rental Problem</a></h>

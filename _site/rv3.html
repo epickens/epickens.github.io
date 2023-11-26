@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Elliot Pickens" />
+
+
+<title>rv3</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Pun TBD</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Elliot Pickens" />
+  <title>Random Variables Pt. 3</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Random Variables Pt. 3</h1>
+<p class="author">Elliot Pickens</p>
+<p class="date">Jul 10, 2021</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#sec2">PF/PDFs and CDFs of Functions of a Random Variable</a>
+<ul>
+<li><a href="#for-discrete-distributions">For Discrete Distributions</a></li>
+<li><a href="#for-continuous-distributions">For Continuous Distributions</a>
+<ul>
+<li><a href="#lin_1">Linear Functions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#probability-integral-transforms">Probability Integral Transforms</a>
+<ul>
+<li><a href="#pseudo-random-numbers">Pseudo-Random Numbers</a></li>
+</ul></li>
+<li><a href="#functions-of-multiple-random-variables">Functions of Multiple Random Variables</a>
+<ul>
+<li><a href="#for-discrete-joint-distributions">For Discrete <em>Joint</em> Distributions</a>
+<ul>
+<li><a href="#relation-to-binomial-and-bernoulli-distributions">Relation to Binomial and Bernoulli Distributions</a></li>
+</ul></li>
+<li><a href="#for-continuous-joint-distributions">For Continuous <em>Joint</em> Distributions</a>
+<ul>
+<li><a href="#bivariate-linear-functions">Bivariate Linear Functions</a></li>
+<li><a href="#convolutions">Convolutions</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+</nav>
+<h1 id="intro">Intro</h1>
+<p>Once we have the distribution of a random variable why not manipulate it? Maybe for some reason we would like five times the distribution, or it’s square, or whatever else we might be able to think up for the purpose of the problem at hand. With some random variable <span class="math inline">\(X\)</span> already in hand it seems reasonable to believe we could also find the distribution of <span class="math inline">\(5X\)</span> or <span class="math inline">\(X^2\)</span>. And it is, but before we can determine such distributions we have to take a dip into the world of functions of random variables.</p>
+<h1 id="sec2">PF/PDFs and CDFs of Functions of a Random Variable</h1>
+<h2 id="for-discrete-distributions">For Discrete Distributions</h2>
+<p>Starting with a discrete distribution <span class="math inline">\(X\)</span> (with pf <span class="math inline">\(f\)</span>) let’s define a function on all possible values of <span class="math inline">\(X\)</span> that we’ll call <span class="math inline">\(r\)</span>. Now let’s use <span class="math inline">\(r\)</span> to define a new random variable <span class="math inline">\(Y = r(X)\)</span> with a pf <span class="math inline">\(g\)</span>. Since <span class="math inline">\(g\)</span> outputs probability values for <span class="math inline">\(Y\)</span>, which are related to the probability values of <span class="math inline">\(X\)</span> then we should be able to define <span class="math inline">\(g\)</span> using <span class="math inline">\(f\)</span>. The precise way we do this is by summing the probabilities of all <span class="math inline">\(X\)</span> value that could produce <span class="math inline">\(Y=y\)</span>. We can write out this definition of <span class="math inline">\(g\)</span> as</p>
+<p><span class="math display">\[\label{pf_dis}
+g(y)=P(Y=y)=P(r(X)=y)=\sum_{\{x|r(x)=y\}} f(x)\]</span></p>
+<h2 id="for-continuous-distributions">For Continuous Distributions</h2>
+<p>We define the pdfs and cdfs of the distributions of functions of a random variable slightly differently in the continuous case. Instead of the standard format of the definition of a pdf of a continuous random variable that invokes the existence of some integral that outputs the probability on some interval, we instead derive the cdf of <span class="math inline">\(Y\)</span> directly from <span class="math inline">\(f\)</span> with</p>
+<p><span class="math display">\[\label{pf_cont}
+G(y)=P(Y\leq y)=P(r(X)\leq y)=\int_{\{x|r(x)\leq y\}}f(x)dx\]</span></p>
+<p>from which we can derive the pdf (where <span class="math inline">\(G\)</span> is differentiable) using</p>
+<p><span class="math display">\[g(y)=\frac{gG(y)}{dy}\]</span></p>
+<h3 id="lin_1">Linear Functions</h3>
+<p>A linear function is a function of the generic <span class="math inline">\(y=mx+b\)</span> sort, and happens to be quite often used in statistical models and elsewhere. In the world of random variables we can create <span class="math inline">\(Y\)</span> as the result of a linear function <span class="math inline">\(Y=mX+b\)</span> (where <span class="math inline">\(m\neq 0\)</span>). We can then find the pdf of <span class="math inline">\(Y\)</span> to be</p>
+<p><span class="math display">\[g(y)=\dfrac{1}{|a|}f(\dfrac{y-b}{a})\:for\:-\infty&lt;y&lt;\infty\]</span></p>
+<p>where <span class="math inline">\(f\)</span> is the pdf of <span class="math inline">\(X\)</span>.</p>
+<h1 id="probability-integral-transforms">Probability Integral Transforms</h1>
+<p>The probability integral transform is an operation where we use a random variable <span class="math inline">\(X\)</span> with a continuous cdf <span class="math inline">\(F\)</span> to create a new random variable <span class="math inline">\(Y=F(x)\)</span>. Due to the nature of <span class="math inline">\(F\)</span> we now have a random variable in <span class="math inline">\(Y\)</span> that is equivalent to the uniform distribution on <span class="math inline">\([0,1]\)</span>.  </p>
+<p>The transformation works, because we know that <span class="math inline">\(0\leq F(x)\leq 1\)</span> then <span class="math inline">\(P(Y&lt;0) = P(Y&gt;1) = 0\)</span>. And we know that <span class="math inline">\(F(x) = y\)</span> for some set of <span class="math inline">\(x\)</span> values that exist on a bounded interval <span class="math inline">\([x_0,x_1]\)</span>. Therefore, we can say that <span class="math inline">\(Y\leq y\)</span> if and only if <span class="math inline">\(X\leq x_1\)</span> (where <span class="math inline">\(x_1\)</span> is the upper bound of the interval we just mentioned). Thus, the cdf of <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[G(y) = P(Y\leq y) = P(X\leq x_1) = F(x_1) = y\]</span></p>
+<p>and the distribution of <span class="math inline">\(Y\)</span> is the uniform distribution on <span class="math inline">\([0,1]\)</span>. To quickly restate, since the cdf <span class="math inline">\(G(y)=y\)</span> for <span class="math inline">\(0&lt;y&lt;1\)</span> is also the cdf of the uniform distribution we can draw the equivalence.  </p>
+<p>Transforming a distribution to a uniform one is not all that interesting on its own, but with just a another short step we can then convert this new uniform distribution into any sort of our choosing. To do this we just need another continuous cdf, but first we need to introduce a corollary. Assume <span class="math inline">\(Y\)</span> represents a uniform distribution on <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(F\)</span> is a continuous cdf with the quantile function <span class="math inline">\(F^{-1}\)</span>. Then <span class="math inline">\(F\)</span> is the cdf of <span class="math inline">\(X=F^{-1}(Y)\)</span>.  </p>
+<p>We can put this corollary into action in order to transform <span class="math inline">\(Y\)</span> into a third variable <span class="math inline">\(Z\)</span> by noticing that for some continuous cdf <span class="math inline">\(G\)</span> we can define <span class="math inline">\(Z\)</span> as <span class="math inline">\(G^{-1}(Y)\)</span>. Then by our corollary we get that <span class="math inline">\(G\)</span> is the cdf of <span class="math inline">\(Z=G^{-1}(F(X))\)</span>.</p>
+<h2 id="pseudo-random-numbers">Pseudo-Random Numbers</h2>
+<p>Although I won’t go into much detail about it on this post, it should be noted that the probability integral transform can be quite useful when we need to generate pseudo-random numbers. Due to our newfound ability to convert a uniform distribution into whatever distribution we can think of (with a continuous cdf), so long as we can generate uniform pseudo-random numbers we can also generate pseudo random numbers from your desired distribution. To formalize this a bit we can say that if we have a random variable <span class="math inline">\(X\)</span> with a uniform distribution on <span class="math inline">\([0,1]\)</span> and another random variable <span class="math inline">\(Y = G^{-1}(X)\)</span> has a continuous cdf <span class="math inline">\(G\)</span> with quantile <span class="math inline">\(G^{-1}\)</span>. Then we can use <span class="math inline">\(X\)</span> to produce a sequence of independent values <span class="math inline">\(x_1,...,x_n\)</span>, and then transform them to <span class="math inline">\(y_1,...,y_n\)</span> using <span class="math inline">\(G^{-1}\)</span> while maintaining its random sample-ness.</p>
+<h1 id="functions-of-multiple-random-variables">Functions of Multiple Random Variables</h1>
+<p>When we have more than a single random variable things proceed much the same way they do when we work with multivariate distributions. That is to say that the definitions are altered to fit the new conditions, but the intuition remains the same. Here in this section we’ll retool the ideas presented in section <a href="#sec2" data-reference-type="ref" data-reference="sec2">2</a> to make things gel with as many variables as we might need.</p>
+<h2 id="for-discrete-joint-distributions">For Discrete <em>Joint</em> Distributions</h2>
+<p>Let’s say that we have a group of random variables <span class="math inline">\(X_1,...,X_{n}\)</span> that hold a discrete joint distribution with pf <span class="math inline">\(f\)</span>. Then we can define a function of this set of random variables as <span class="math inline">\(Y=r(X_1,...,X_n)\)</span>. Now using that form let’s define <span class="math inline">\(m\)</span> functions of our set of random variables as</p>
+<p><span class="math display">\[\begin{aligned}
+    Y_1&amp;=r_1(X_1,...,X_n)\\
+    Y_2&amp;=r_2(X_1,...,X_n)\\
+    &amp;\vdots \\
+    Y_m&amp;=r_m(X_1,...,X_n)\end{aligned}\]</span></p>
+<p>To define a joint pf of these functions we take some number of values <span class="math inline">\(y_1,...,y_m\)</span> produced by the random variables <span class="math inline">\(Y_1,...,Y_m\)</span>, as well as the set of all points <span class="math inline">\((x_1,...,x_n) \in A\)</span> that relate to the <span class="math inline">\(y\)</span> values via the relationship</p>
+<p><span class="math display">\[\begin{aligned}
+    r_1(x_1,...,x_n)&amp;=y_1\\
+    r_2(x_1,...,x_n)&amp;=y_2\\
+    &amp;\vdots \\
+    r_m(x_1,...,x_n)&amp;=y_m\end{aligned}\]</span></p>
+<p>Thus, by following the process we used in <a href="#pf_dis" data-reference-type="ref" data-reference="pf_dis">[pf_dis]</a> we can solve for the probability <span class="math inline">\(g(y_1,...,y_m)\)</span> by summing over the probabilities of all points <span class="math inline">\((x_1,..,x_n)\)</span> that map to our <span class="math inline">\(y\)</span> values through <span class="math inline">\(r\)</span>. This sum will then take the form</p>
+<p><span class="math display">\[\label{pf_dis1}
+g(y_1,...,y_m)=\sum_{(x_1,...,x_n)\in A} f(x_1,...,x_n)\]</span></p>
+<h3 id="relation-to-binomial-and-bernoulli-distributions">Relation to Binomial and Bernoulli Distributions</h3>
+<p>We often think of binomial distributions as being composed of a sequence of Bernoulli trials. Therefore we should be able to relate a sequence of i.i.d. random variables <span class="math inline">\(X_1,...,X_n\)</span> following a Bernoulli distribution (with parameter <span class="math inline">\(p\)</span>) to a random variable <span class="math inline">\(Y\)</span> that follows a binomial distribution (that has parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span>) with <span class="math inline">\(Y=X_1+...+X_n\)</span>.  </p>
+<p>Beyond simple intuition, we can show that this relationship holds weight starting with the assertion that <span class="math inline">\(Y=y\)</span> if and only if we have exactly <span class="math inline">\(y\)</span> of our Bernoulli random variables equaling <span class="math inline">\(1\)</span> and the remaining <span class="math inline">\(n-y\)</span> equaling <span class="math inline">\(0\)</span>. We also know that the vector <span class="math inline">\((X_1,...,X_n)\)</span> has <span class="math inline">\(\binom{n}{y}\)</span> possible values that have our desired number of zeroes and ones. All of these vector configurations have a probability of occurring that is tied to the parameter <span class="math inline">\(p\)</span>, since each element of the each vector has a probability <span class="math inline">\(p\)</span> of being a one and probability <span class="math inline">\(1-p\)</span> of being a zero. Therefore, the probability of each individual vector is <span class="math inline">\(p^y (1-p)^{n-y}\)</span>, and the probability that <span class="math inline">\(Y=y\)</span> is the sum of all these vector probabilities, which equates to <span class="math inline">\(\binom{n}{y} p^y (1-p)^{n-y}\)</span>. This result shows our proposed relationship is correct, because it is the pf of the binomial distribution.</p>
+<h2 id="for-continuous-joint-distributions">For Continuous <em>Joint</em> Distributions</h2>
+<p>Functions of continuous joint distributions follow the same behavioral path, but with the standard "we’re now working with the reals" twist. Put directly: it’s once again time to integrate. To set things up let’s say that we have a set of random variables <span class="math inline">\(\textbf{X} = (X_1,...,X_n)\)</span> that have a joint pdf <span class="math inline">\(f\)</span>, and that <span class="math inline">\(\textbf{Y} = r(\textbf{X})\)</span>. We will also define a set <span class="math inline">\(A_y=\{\textbf{x}|r(\textbf{x})\leq y\}\)</span> for each value <span class="math inline">\(y\)</span> (which is very similar to the <span class="math inline">\(A\)</span> in <a href="#pf_dis1" data-reference-type="ref" data-reference="pf_dis1">[pf_dis1]</a>). Then we define the cdf of <span class="math inline">\(Y\)</span> to be</p>
+<p><span class="math display">\[\label{pf_cont1}
+    G(y) = \int_{A_y}\dots\int f(\textbf{x})d\textbf{x}\]</span></p>
+<p>We get this definition from the equality</p>
+<p><span class="math display">\[G(y)=P(Y\leq y)=P(r(\textbf{X})\leq y)=P(\textbf{X}\in A_y)\]</span></p>
+<p>whose final term <span class="math inline">\(P(\textbf{X}\in A_y)\)</span> is equivalent to <a href="#pf_cont1" data-reference-type="ref" data-reference="pf_cont1">[pf_cont1]</a>.  </p>
+<p>We can also find the pdf <span class="math inline">\(Y\)</span> by taking the derivative of <span class="math inline">\(G\)</span>, so long as <span class="math inline">\(Y\)</span> is continuous.</p>
+<h3 id="bivariate-linear-functions">Bivariate Linear Functions</h3>
+<p>In <a href="#lin_1" data-reference-type="ref" data-reference="lin_1">2.2.1</a> we showed how we can find the pdf of a linear function of a single variable. Here we’ll expand upon such univariate functions to develop cdfs and pdfs for linear functions of two variables. Although this won’t quite reach the point of having a general form for linear functions of an arbitrary number of random variables, we’ll still make good progress towards that here.  </p>
+<p>Suppose we have the joint pdf <span class="math inline">\(f\)</span> of two random variables <span class="math inline">\(X_1\)</span> &amp; <span class="math inline">\(X_2\)</span>, and let <span class="math inline">\(Y=m_1 X_1 + m_2 X_2 + b\)</span> (where <span class="math inline">\(m_1 \neq 0\)</span>). Then the pdf <span class="math inline">\(g\)</span> of <span class="math inline">\(Y\)</span> (which will have a continuous distribution) will be</p>
+<p><span class="math display">\[\label{lin_2}
+g(y)=\int_{-\infty}^{\infty}f\left(\dfrac{y-b-m_2x_2}{m_1}, x_2\right)\dfrac{1}{|m_1|}dx_2\]</span></p>
+<p>To prove <a href="#lin_2" data-reference-type="ref" data-reference="lin_2">[lin_2]</a> we will use essentially the same process used to show <a href="#pf_cont1" data-reference-type="ref" data-reference="pf_cont1">[pf_cont1]</a>. We begin by creating our <span class="math inline">\(A_y = \{(x_1,x_2)|m_1x_1+m_2x_2+b\leq y\}\)</span>, and then setting up our integral for <span class="math inline">\(G\)</span> (while assuming <span class="math inline">\(m_1&gt;0\)</span>)</p>
+<p><span class="math display">\[\label{lin_3}
+    G(y) = \int_{A_y}\int f(x_1,x_2)dx_1dx_2=\int_{-\infty}^{\infty}\int_{-\infty}^{(y-b-m_2x_2)/m_1}f(x_1,x_2)dx_1dx_2\]</span></p>
+<p>To proceed we need to modify the inner integral by carrying out a change of variables. The change we’ll use is <span class="math inline">\(z=m_1x_1+m_2x_2+b\)</span>, which becomes <span class="math inline">\(x_1 = \dfrac{z-m_2x_2-b}{m_1}\)</span> with <span class="math inline">\(dx_1 = \dfrac{dz}{m_1}\)</span>. Plugging this in causes the inner integral to become</p>
+<p><span class="math display">\[\label{lin_4}
+\int_{-\infty}^{y}f\left(\dfrac{z-b-m_2x_2}{m_1}, x_2\right)\dfrac{1}{m_1}dz\]</span></p>
+<p>that we can insert into <a href="#lin_3" data-reference-type="ref" data-reference="lin_3">[lin_3]</a> to create</p>
+<p><span class="math display">\[\begin{aligned}
+    G(y) &amp;= \int_{-\infty}^{\infty}\int_{-\infty}^{y} f\left(\dfrac{z-b-m_2x_2}{m_1}, x_2\right)\dfrac{1}{m_1}dzdx_2 \\
+    &amp;= \int_{-\infty}^{y}\int_{-\infty}^{\infty} f\left(\dfrac{z-b-m_2x_2}{m_1}, x_2\right)\dfrac{1}{m_1}dx_2dz\end{aligned}\]</span></p>
+<p>Then by substituting the <span class="math inline">\(g(z)\)</span> for the inner integral we get <span class="math inline">\(G(y)=\int_{-\infty}^{y}g(z)dz\)</span>. Therefore, since the derivative of <span class="math inline">\(G(y)\)</span> is <span class="math inline">\(g(y)\)</span> we have our proof, because <span class="math inline">\(g(y)\)</span> is equal to <a href="#lin_2" data-reference-type="ref" data-reference="lin_2">[lin_2]</a>.</p>
+<h3 id="convolutions">Convolutions</h3>
+<p>A convolution is a special case of the theorem we expressed in <a href="#lin_2" data-reference-type="ref" data-reference="lin_2">[lin_2]</a> where <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent, <span class="math inline">\(m_1=m_2=1\)</span>, and <span class="math inline">\(b=0\)</span>. These conditions leave us with the arrangement <span class="math inline">\(Y=X_1+X_2\)</span>, where the distribution of <span class="math inline">\(Y\)</span> is called the convolution of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>. Similarly, we can call the pdf of <span class="math inline">\(Y\)</span> the convolution of the pdfs of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>.  </p>
+<p>Then if we let the pdfs of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> be <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> respectively, we can use <a href="#lin_2" data-reference-type="ref" data-reference="lin_2">[lin_2]</a> to find that the pdf of <span class="math inline">\(Y = X_1+X_2\)</span> is</p>
+<p><span class="math display">\[\begin{aligned}
+\label{conv_1}
+    g(y)&amp;=\int_{-\infty}^{\infty}f\left(y-x_2, x_2\right)dx_2 \\
+    &amp;=\int_{-\infty}^{\infty}f_1(y-x_2)f_2(x_2)dx_2\end{aligned}\]</span></p>
+<p>or if we flip the variables we could get<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[\begin{aligned}
+\label{conv_2}
+g(y)&amp;=\int_{-\infty}^{\infty}f_1(x_1)f_2(y-x_1)dx_1\end{aligned}\]</span></p>
+<p>While I’m going to end this brief aside on convolutions here, it should be noted that the convolution operation is a surprising powerful one with applications in probability and beyond.</p>
+<h1 id="summary">Summary</h1>
+<p>In this post we covered a number of important topics related to functions of random variables. At this point we should have a solid enough understanding of the basics, but there are still a fair few details I left out and didn’t touch on at all. The most glaring of these are the direct transformation/derivations of the pdfs of functions of a random variable. I might dive deeper into this at some point in the future, but if I do I think it’ll be part of a slightly different series of posts centered on the details I’ve been skirting past. There are also a few minor things I could’ve spent a bit of time describing, but didn’t find warranted a place in this post (mostly special transformations like linear transformations). Those holes aside, I hope this post was informative enough for what it is.  </p>
+<p>My next post will be the final installment in this little random variables sub-series. It’ll focus on Markov chains and should work as an ultra abridged introduction to all of the great topics that branch off from them including stochastic processes and interesting statistical models like HMMs (hidden Markov models).</p>
+<h1 id="acknowledgments">Acknowledgments</h1>
+<p>These notes were based on <em>Probability and Statistics (Fourth Edition)</em> by DeGroot &amp; Schervish.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>I typed up these last few convolution equations fairly late at night and have a feeling I made a mistake, but I’m not currently seeing it. If anyone happens to read this and notice something’s off please let me know <span class="math inline">\(:)\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">rv3</h1>
+<h4 class="author">Elliot Pickens</h4>
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

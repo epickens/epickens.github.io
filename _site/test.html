@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>test.knit</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Pun TBD</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Elliot Pickens" />
+  <title>Random Variables Pt. 4</title>
+  <style>
+    html {
+      line-height: 1.7;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 40em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin-top: 1.7em;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.7em;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1.7em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1.7em 0 1.7em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      font-style: italic;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      background-color: #f0f0f0;
+      font-size: 85%;
+      margin: 0;
+      padding: .2em .4em;
+    }
+    pre {
+      line-height: 1.5em;
+      padding: 1em;
+      background-color: #f0f0f0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin-top: 1.7em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      border-bottom: 1px solid lightgray;
+      padding: 1em 3em 1em 0;
+    }
+    header {
+      margin-bottom: 6em;
+      text-align: center;
+    }
+    nav a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Random Variables Pt. 4</h1>
+<p class="author">Elliot Pickens</p>
+<p class="date">Jul 19, 2021</p>
+</header>
+<h1 id="intro">Intro</h1>
+<p>So far we’ve talked about about how random variables operate in a vacuum. We’ve covered the basic probabilistic concepts, while spending hardly any time elucidating just how powerful these objects can be when a little bit of creativity is applied. In this post we’ll explore one way in which random variables can be reared into time dependent model of a system.</p>
+<h1 id="markov-chains">Markov Chains</h1>
+<div class="definition">
+<p><strong>Definition 1</strong>.  <strong>Stochastic Processes</strong> are sequences of random variables where each random variable represents the state of a system at a given time. A sequence with a discrete time parameter will take the form <span class="math inline">\(X_1,X_2,...,X_n,...\)</span> with <span class="math inline">\(X_1\)</span> being the initial state of a the system and each <span class="math inline">\(X_i \:\forall\: i&gt;1\)</span> representing system at time <span class="math inline">\(i\)</span>. Continuous stochastic processes also exist, but in this post we will focus solely on discrete ones.</p>
+</div>
+<p>Markov chains are a particular sort of discrete stochastic process where the current time state is only dependent on the previous time state. Focusing in on the <span class="math inline">\(n\text{th}\)</span> time state in a Markov chain we can say that by definition it only depends upon the <span class="math inline">\(n-1\text{th}\)</span> time state. We can restate this by saying that for any <span class="math inline">\(n\geq 1\)</span>, value <span class="math inline">\(b\)</span>, and sequence of time states <span class="math inline">\(x_1,...,x_n\)</span> <span class="math display">\[\label{m1}
+    P(X_{n+1}\leq b|X_1=x_1,...,X_n=x_n)=P(X_{n+1}\leq b|X_n=x_n)\]</span></p>
+<p>is the probability of <span class="math inline">\(x_{n+1}\)</span> conditioned on the existing sequence of states.  </p>
+<p>Before moving on I would like to provide a little bit of clarification as to exactly what sort of Markov chains we’ll be investigating in this post. Here we will only be working with a Markov chains that have been constrained to have only a finite number of possible states. While more general forms do exist, it is easier to introduce Markov chains as only having <span class="math inline">\(k\)</span> possible states. Thus, for each time step we will refer to it’s current condition by saying that at time <span class="math inline">\(n\)</span> the chain is in state <span class="math inline">\(1\leq j\leq k\)</span>.  </p>
+<p>With basic definitions out of the way we can get onto the real mechanics of Markov chains. To begin let’s work out the joint pf of the first <span class="math inline">\(n\)</span> states of a Markov chain. We can do this by using the multiplication rule for conditional probabilities to expand the joint pf to</p>
+<p><span class="math display">\[\begin{aligned}
+\label{m2}
+    P&amp;(X_1=x_1,X_2=x_2,...,X_n=x_n)\\
+    &amp;=P(X_1=x_1)P(X_2=x_2|X_1=x_1)...\\
+    &amp;\:\:\:\dots P(X_n=x_n|X_{n-1}=x_{n-1})
+    \end{aligned}\]</span></p>
+<p>And we can also show the probability of <span class="math inline">\(m&gt;0\)</span> future states conditioned on <span class="math inline">\(X_n=x_n\)</span> in a similar way to get</p>
+<p><span class="math display">\[\begin{aligned}
+    P&amp;(X_{n+1}=x_{n+1},X_{n+2}=x_{n+2},...,X_{n+m}=x_{n+m}|X_n=x_n) \\
+    &amp;=P(X_{n+1}=x_{n+1}|X_n=x_n)P(X_{n+2}=x_{n+2}|X_{n+1}=x_{n+1})...\\
+    &amp;\:\:\:\dots P(X_{n+m}=x_{n+m}|X_{n+m-1}=x_{n+m-1})
+    \end{aligned}\]</span></p>
+<p>Much of our focus when working with Markov chains is understanding how exactly the process shifts from state to state. The first step towards that goal is understanding what we call transmission distributions.</p>
+<div id="trans1" class="definition">
+<p><strong>Definition 2</strong>.  <strong>Transmission Distributions</strong> are the conditional distributions that describe the movement of the system between states. An example of such a distribution is <span class="math inline">\(P(X_{n+1}=j|X_{n}=i)\)</span> for <span class="math inline">\(i,j=1,...,k\)</span> and <span class="math inline">\(n\geq1\)</span>.  </p>
+<p>A special case of these distributions are <strong>stationary transmission distributions</strong> where the probability of shifting from one state to another remains the same regardless of what time step we are on (for all <span class="math inline">\(n\)</span>). This allows us to establish constant probabilities to describe a shift from state <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> that we denote <span class="math inline">\(p_{ij}\)</span>. More directly</p>
+<p><span class="math display">\[P(X_{n+1}=j|X_{n}=i)=p_{ij} \:\forall\: n\]</span></p>
+<p>which can be further shortened to</p>
+<p><span class="math display">\[g(j|i)=p_{ij} \:\forall\: n,i,j\]</span></p>
+</div>
+<p>If we know that the transition distributions for all possible state changes are stationary then we can create what we call a <strong>transmission matrix</strong>. Assuming our transmission probabilities are given by <span class="math inline">\(p_{ij}=P(X_{n+1}=j|X_{n}=i) \:\forall\: n,j,i\)</span> then we define the transmission matrix <span class="math inline">\(\textbf{P}\)</span> of our Markov chain to be a <span class="math inline">\(k \times k\)</span> matrix where all entries are <span class="math inline">\(p_{ij}\)</span> values. The overall composition of the matrix will be</p>
+<p><span class="math display">\[\textbf{P}=
+    \begin{bmatrix}
+    p_{11} &amp; \dots &amp; p_{1k}\\
+    p_{21} &amp; \dots &amp; p_{2k}\\
+    \vdots &amp; \ddots &amp; \vdots\\
+    p_{k1} &amp; \dots &amp; p_{kk}
+    \end{bmatrix}\]</span></p>
+<p>A few notable things about these matrices are that they must be composed of exclusively non-negative elements, and each row must sum to <span class="math inline">\(1\)</span>. The non-negativity follows directly from the fact that each element is itself a probability value, while the assertion that each row must sum to <span class="math inline">\(1\)</span> is a byproduct of the conditionality woven into the matrix through each <span class="math inline">\(p_{ij}\)</span> value. Since each row <span class="math inline">\(i\)</span> is built out of the conditional probabilities given by <span class="math inline">\(g(\cdot|i)\)</span> then the sum <span class="math inline">\(\sum_{j=1}^{k} p_{ij}\)</span> must equal one, because <span class="math inline">\(i\)</span> must transition to one of the other states (or stay the same) <span class="math inline">\(100\%\)</span> of the time.  </p>
+<p>I won’t wander off into uses of these transmission matrices at this time, but to give a little intuition as to how they might be used I would ask what happens if multiply a <span class="math inline">\(1\times k\)</span> matrix representing the current state of the system with <span class="math inline">\(\textbf{P}\)</span>? What might that tell us about how the system could evolve?  </p>
+<p><span class="math inline">\(\textbf{P}\)</span> and all transmission matrices fall under the broader category of matrices called <strong>stochastic matrices</strong>. A stochastic matrix is a square matrix composed of non-negative entries with the property that every row must sum to <span class="math inline">\(1\)</span>. Clearly <span class="math inline">\(\textbf{P}\)</span> is such a matrix, and that every <span class="math inline">\(k\times k\)</span> stochastic matrix is a valid transmission matrix for a finite Markov chain with stationary transmission probabilities and <span class="math inline">\(k\)</span> possible states.</p>
+<h2 id="multi-step-transitions">Multi-Step Transitions</h2>
+<p>To answer the question posed a few paragraphs back we can take a diversion to spend some time thinking about multi-step transmissions. A single transmission matrix can be used to understand what the next state of a system might be, so by stacking multiple matrices together we can find the probability of landing in some state <span class="math inline">\(j\)</span> from state <span class="math inline">\(i\)</span> after <span class="math inline">\(m\)</span> steps. Thus, we can say that the <span class="math inline">\(m\text{th}\)</span> power <span class="math inline">\(\textbf{P}^m\)</span> of <span class="math inline">\(\textbf{P}\)</span> has elements <span class="math inline">\(p_{ij}^m\)</span> that represent the chance of moving from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> in <span class="math inline">\(m\)</span> steps.  </p>
+<p>Note that the rows of <span class="math inline">\(\textbf{P}^m\)</span> maintain the conditional property held by <span class="math inline">\(\textbf{P}\)</span>. This means that the <span class="math inline">\(i\text{th}\)</span> row of <span class="math inline">\(\textbf{P}^m\)</span> holds the conditional distribution of <span class="math inline">\(X_{n+m}\)</span> given <span class="math inline">\(X_n = i\)</span> (where <span class="math inline">\(n,m\geq 1\)</span> and <span class="math inline">\(i=1,...,k\)</span>).</p>
+<h3 id="absorbing-states">Absorbing States</h3>
+<p>An absorbing state is one where we have a <span class="math inline">\(100\%\)</span> chance of staying in the same state in the next step. In terms of transmission probabilities, <span class="math inline">\(i\)</span> is an absorbing state if <span class="math inline">\(p_{ii}=1\)</span>.</p>
+<h2 id="initial-distribution">Initial Distribution</h2>
+<p>Transmission matrices are a fantastic way of explaining how a system might evolve, but we currently lack the proper input to allow us to simulate a system based on starting point. The input we need for this in an initial distribution. An initial distribution is a <span class="math inline">\(1\times k\)</span> matrix where the <span class="math inline">\(i\text{th}\)</span> entry represents the probability of the system being in that state. If for example, we have a system where <span class="math inline">\(k=4\)</span> and we know the system must start in the first state then the initial distribution will be <span class="math inline">\([1,0,0,0]\)</span>. Alternatively if we knew that it was just as likely to be in one state as it was another our initial distribution (often denoted <span class="math inline">\(\nu\)</span>) would be <span class="math inline">\([0.25,0.25,0.25,0.25]\)</span>.  </p>
+<p>Naturally this means that the output of <span class="math inline">\(\nu \textbf{P}^m\)</span> will be another <span class="math inline">\(1\times k\)</span> matrix that represents the chance of being in each state after <span class="math inline">\(m\)</span> steps. We don’t, however, always have to use matrix multiplication to make use of an initial distribution. By plucking out individual values from <span class="math inline">\(\nu\)</span> we can things like rewrite <a href="#m2" data-reference-type="ref" data-reference="m2">[m2]</a> as <span class="math inline">\(P(X_1=x_1,X_2=x_2,...,X_n=x_n)=v_{x_1}p_{x_1x_2}\dots p_{x_{n-1}x_n}\)</span>.  </p>
+<p>It is also possible to find the marginal distributions of any step using <span class="math inline">\(\nu\)</span> and <span class="math inline">\(\textbf{P}\)</span>. As I mentioned in the previous paragraph <span class="math inline">\(\nu \textbf{P}^m\)</span> gives the probability of being in each state after <span class="math inline">\(m\)</span> steps, but if we just rewind back one step to <span class="math inline">\(\nu \textbf{P}^{m-1}\)</span> we get the marginal distribution of the <span class="math inline">\(m\text{th}\)</span> state (we subtract <span class="math inline">\(1\)</span> because the <span class="math inline">\(\nu\)</span> is the first state).  </p>
+<p>We can prove this by recognizing that in order to find the probability values of the marginal distribution of the <span class="math inline">\(m\text{th}\)</span> step we need to somehow find the probability of reaching each state by summing over the probability of each path we can take to get there. This is equivalent to the sum</p>
+<p><span class="math display">\[P(X_m=x_m)= \sum_{x_{m-1}=1}^{k}\dots \sum_{x_{2}=1}^{k}\sum_{x_{1}=1}^{k} v_{x_1}p_{x_1x_2}\dots p_{x_{m-1}x_m}\]</span></p>
+<p>To reason through this we start from the inner most sum, which only interacts with <span class="math inline">\(v_{x_1}p_{x_1x_2}\)</span> and results in <span class="math inline">\(\nu \textbf{P}\)</span>. As we work outward each new sum is equivalent to multiplying by an additional <span class="math inline">\(\textbf{P}\)</span>. Thus, the second sum is equal to <span class="math inline">\(\nu\textbf{P}\textbf{P}=\nu\textbf{P}^2\)</span>, and the eventual <span class="math inline">\(m-1\text{th}\)</span> sum returns <span class="math inline">\(\nu\textbf{P}^{m-1}\)</span>.</p>
+<h2 id="stationary-distributions">Stationary Distributions</h2>
+<p>Earlier we defined stationary transmission distributions in <a href="#trans1" data-reference-type="ref" data-reference="trans1">Definition 2</a> as transmission distributions that remains fixed over time. Here in this section we’ll discuss stationary distributions, which are more general but share the important commonality that they are unaffected by time.  </p>
+<p>One way to define a stationary distribution is to use the transmission matrix <span class="math inline">\(\textbf{P}\)</span> of a Markov chain. In this case we say that a probability vector <span class="math inline">\(\nu\)</span> is a stationary distribution if <span class="math inline">\(\nu \textbf{P} = \nu\)</span> is true.  </p>
+<p>Therefore, if we are in a stationary distribution <span class="math inline">\(\nu\)</span> then the probability of being in some state <span class="math inline">\(i\)</span> after <span class="math inline">\(n\)</span> steps is the same as being in the <span class="math inline">\(i\text{th}\)</span> state from the start. That is to say that where we might be is independent of time. It does not mean that we are just stuck in some state (in an absorbing state), or that the chain is not changing over time. Unless the distribution is composed completely of absorbing states (which will be stationary by definition) then the chain will jump between states at rates determined by <span class="math inline">\(\nu\)</span>. It also does not mean that if we take in additional information (like knowledge of the chain being in specific states at specific times) that we just have to default to <span class="math inline">\(\nu\)</span> and cannot do any other sort of calculations.</p>
+<h3 id="finding-stationary-distributions">Finding Stationary Distributions</h3>
+<p>With a little linear algebra we can easily find stationary distributions of <span class="math inline">\(\textbf{P}\)</span>. Given we know that <span class="math inline">\(\nu\textbf{P}=\nu\)</span> then we also have that <span class="math inline">\(\nu\left[\textbf{P}-\textbf{I}\right[=\textbf{0}\)</span> since <span class="math inline">\(\nu = \nu \textbf{I}\)</span> where <span class="math inline">\(\textbf{I}\)</span> is a <span class="math inline">\(k\times k\)</span> identity matrix and <span class="math inline">\(\textbf{0}\)</span> is a <span class="math inline">\(1\times k\)</span> vector of all zeroes. Ideally we would be able to solve this system of equations directly, but sadly we cannot due to there being far too many possible solutions to identify a valid one. The reason for this is that if a valid solution <span class="math inline">\(\textbf{v}\)</span> exists then <span class="math inline">\(c\textbf{v}\)</span> is also a solution <span class="math inline">\(\forall c \in \mathbb{R}\)</span>, because having <span class="math inline">\(k\)</span> variables and <span class="math inline">\(k\)</span> equations implies the existence of a redundant equation.  </p>
+<p>We can sidestep this issue by asserting that the elements of our solution <span class="math inline">\(\textbf{v}\)</span> sum to <span class="math inline">\(1\)</span>. We do this by creating a new matrix <span class="math inline">\(\textbf{G}\)</span> that is equal to <span class="math inline">\(\textbf{P}-\textbf{I}\)</span> with the one important change that the final column of <span class="math inline">\(\textbf{G}\)</span> must be all ones. Then we can solve</p>
+<p><span class="math display">\[\textbf{v}\textbf{G}=(0,...,0,1)\]</span></p>
+<p>to find a unique stationary distribution if it exists. To solve this equation we will invoke the existence of <span class="math inline">\(\textbf{G}^{-1}\)</span>, which is the inverse of <span class="math inline">\(\textbf{G}\)</span> with the property <span class="math inline">\(\textbf{G}\textbf{G}^{-1}=\textbf{G}^{-1}\textbf{G}=\textbf{I}\)</span>. This inverse begets the solution</p>
+<p><span class="math display">\[\textbf{v}= (0,...,0,1)\textbf{G}^{-1}\]</span></p>
+<p>The only drawback to this method is that if <span class="math inline">\(\textbf{G}\)</span> is singular and has no inverse then it cannot be used. Unfortunately, this means that we cannot use it to find stationary distributions when multiple exist, because under those conditions our <span class="math inline">\(\textbf{G}\)</span> will be singular.</p>
+<h3 id="converging-to-a-stationary-distribution">Converging to a Stationary Distribution?</h3>
+<p>I’m going to end this section with a quick theorem. If there exists an <span class="math inline">\(m\)</span> such that all entries of <span class="math inline">\(\textbf{P}^m\)</span> are strictly positive we can also say that</p>
+<ul>
+<li><p>we have a unique stationary distribution <span class="math inline">\(\nu\)</span> for our Markov chain,</p></li>
+<li><p>the limit <span class="math inline">\(lim_{n\to \infty}\textbf{P}^m\)</span> is <span class="math inline">\([\nu, \nu,...,\nu]\)</span> i.e. a matrix where all rows are <span class="math inline">\(\nu\)</span>, and</p></li>
+<li><p>the distribution of the Markov chain will converge to <span class="math inline">\(\nu\)</span> as the number of steps <span class="math inline">\(n \to \infty\)</span> regardless of the starting distribution.</p></li>
+</ul>
+<p>I’m not going to spend much time on this theorem, but I will point out that the third statement seems to follow directly from the second.</p>
+<h3 id="other-stationary-stochastic-processes">Other Stationary Stochastic Processes</h3>
+<p>The concept of stationary processes exists beyond the confines of Markov chains, and is crucial to things like time series analysis. The ideas and intuition in these other cases are the same as the are for Markov chains in that they center themselves upon time independence. The definitions are, however, a little different. Instead of using a transmission matrix, joint CDFs of sequences of random variables separated by some arbitrary time parameter or the auto-covariance of the process are used to determine stationarity.  </p>
+<p>At the end of this post (<a href="#examples" data-reference-type="ref" data-reference="examples">5</a>) I’ve included a few problem write-ups for questions about these more general stationary processes. To be completely honest I’m including them here, because I don’t have anywhere better to put them and figure I might as well. Hopefully someone finds them interesting or helpful.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this post we scratched the surface of Markov chains. The goal here was to touch on the most important concepts needed to use Markov chains, or at least read about how they are employed by researchers and practitioners. They really are a great tool to have in your tool belt even if you only ever break it out when you need to figure out what is going on in some complex model based upon them. I highly recommend reading deeper into Markov chains or stochastic processes in general if you found this post at all interesting.  </p>
+<p>With the end of this post I’ve reached the end of this mini series on random variables, but there is still plenty more probability to cover. Next up is expectation.</p>
+<h1 id="acknowledgments">Acknowledgments</h1>
+<p>These notes were based on <em>Probability and Statistics (Fourth Edition)</em> by DeGroot &amp; Schervish.</p>
+<h1 id="examples">Worked Stationary Process Examples</h1>
+<h1 class="unnumbered" id="problem-1">Problem 1</h1>
+<p>Starting from a random walk defined as follows:</p>
+<p><span class="math display">\[X_0 = 0, \: X_t = \sum_{j=1}^{t} \xi_j, \: t=1,2,... \label{eq1}\]</span></p>
+<p>With each <span class="math inline">\(\xi_j\)</span> taking on a value of <span class="math inline">\(\pm 1\)</span> with probability <span class="math inline">\(\frac{1}{2} - \frac{1}{2}\)</span>, and all <span class="math inline">\(\xi_js\)</span> being i.i.d. We want to prove that the random walk <span class="math inline">\(\{X_t\}\)</span> is not weakly stationary.<br />
+Our first step is to evaluate the expectation and variance of each step in the process.</p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[\xi_j] = \frac{-1 + 1}{2} = 0\]</span></p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[\sum_{j=1}^{t} \xi_j] = \sum_{j=1}^{t} \mathop{\mathrm{\mathbb{E}}}[\xi_j] = t0 = 0\]</span></p>
+<p><span class="math display">\[Var(\sum_{j=1}^{t} \xi_j) = Var(\xi_1 + \xi_2 +...+ \xi_t) = tVar(\xi) = t \sigma^2\]</span></p>
+<p>Now that we have both variance and expectation of our walk we can check the autocovariance of the walk.</p>
+<p><span class="math display">\[\begin{split}
+    Cov(X_t,X_{t+k}) &amp; = \mathop{\mathrm{\mathbb{E}}}[ (X_t - \mathop{\mathrm{\mathbb{E}}}[X_t]) (X_{t+k} - \mathop{\mathrm{\mathbb{E}}}[X_{t+k}])] = \mathop{\mathrm{\mathbb{E}}}[ X_t X_{t+k} ] - \mathop{\mathrm{\mathbb{E}}}[ X_t] \mathop{\mathrm{\mathbb{E}}}[X_{t+k}]  \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[ (\sum_{j=1}^{t} \xi_j) (\sum_{j=1}^{t+k} \xi_j) ] - \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j] \mathop{\mathrm{\mathbb{E}}}[\sum_{j=1}^{t+k} \xi_j] \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[ (\sum_{j=1}^{t} \xi_j) (\sum_{j=1}^{t} \xi_j + \sum_{j=t+1}^{k} \xi_j) ] - \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j] \mathop{\mathrm{\mathbb{E}}}[\sum_{j=1}^{t} \xi_j + \sum_{j=t+1}^{k} \xi_j] \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j (\sum_{j=1}^{t} \xi_j)] + \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j (\sum_{j=t+1}^{k} \xi_j) ] - \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j] \mathop{\mathrm{\mathbb{E}}}[\sum_{j=1}^{t} \xi_j] - \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j] \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=t+1}^{k} \xi_j] \\
+    &amp; = \left[\mathop{\mathrm{\mathbb{E}}}[ (\sum_{j=1}^{t} \xi_j)^2 ] - (\mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j])^2\right] + \left[\mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j (\sum_{j=t+1}^{k} \xi_j) ] - \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=1}^{t} \xi_j] \mathop{\mathrm{\mathbb{E}}}[ \sum_{j=t+1}^{k} \xi_j]\right] \\
+    &amp; = Var(\sum_{j=1}^{t} \xi_j) + Cov(\sum_{j=1}^{t} \xi_j, \sum_{j=t+1}^{k} \xi_j) \\
+    &amp; = t\sigma^2
+    \end{split}\]</span></p>
+<p>The final result of the covariance function is <span class="math inline">\(t\sigma^2\)</span> (since <span class="math inline">\(Cov(\sum_{j=1}^{t} \xi_j, \sum_{j=t+1}^{k} \xi_j) = 0\)</span> due to the independence of the two sums). Thus, the random walk is not stationary because it’s variance increases with <span class="math inline">\(t\)</span>.<br />
+After showing that the random walk is not stationary I wanted to take a quick look at how <span class="math inline">\(Var(\sum_{j=1}^{t} \xi_j)\)</span> itself evolves over time. To do so I first evaluated the variance as follows:</p>
+<p><span class="math display">\[\begin{split}
+    Var(X_t) &amp; = Cov(X_t,X_t) = \mathop{\mathrm{\mathbb{E}}}[X_t^2] = \mathop{\mathrm{\mathbb{E}}}[ (\sum_{j=1}^{t} \xi_j) (\sum_{i=1}^{t} \xi_i) ] \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[\sum_{j=1}^{t} \sum_{i=1}^{t} \xi_j \xi_i] = \sum_{j=1}^{t} \sum_{i=1}^{t} \mathop{\mathrm{\mathbb{E}}}[ \xi_j \xi_i]
+    \end{split}\]</span></p>
+<p>At this point we can consider the possible values of <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[ \xi_j \xi_i]\)</span>. When <span class="math inline">\(i \neq j\)</span> we have four possibilities of equal probability (<span class="math inline">\((1,-1), \: (-1,1), \: (-1,-1), \: (1,1)\)</span>), which gives us <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[ \xi_j \xi_i] = 0\)</span> when <span class="math inline">\(i \neq j\)</span>. When <span class="math inline">\(i = j\)</span> however, we get that <span class="math inline">\(X_j X_i = 1\)</span>, and <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X_j X_i] = 1\)</span>. Therefore we can ignore the terms where <span class="math inline">\(i \neq j\)</span> in <span class="math inline">\(\sum_{j=1}^{t} \sum_{i=1}^{t} \mathop{\mathrm{\mathbb{E}}}[ \xi_j \xi_i]\)</span> and since there are <span class="math inline">\(n\)</span> instances where <span class="math inline">\(i = j\)</span> we get <span class="math inline">\(Var(X_t) = \sum_{j=1}^{t} \sum_{i=1}^{t} \mathop{\mathrm{\mathbb{E}}}[ \xi_j \xi_i] = n = \sigma^2\)</span>.<br />
+I wanted to check this result with a quick simulation, so I wrote a script in Python to generate random walks and then plotted them along with the simulation mean, <span class="math inline">\(\pm 1\)</span> standard deviations, and the theoretical <span class="math inline">\(\sigma^2 = n \implies \sigma = \sqrt{n}\)</span> line to see how well things line up.</p>
+<figure>
+<img src="sim.png" style="width:50.0%" />
+</figure>
+<p>Things look to line up pretty well, so it appears that the experiment is matching the theoretical result well. We can also see the explosion in variance over time that we saw while proving the walk was not stationary.</p>
+<h1 class="unnumbered" id="problem-2">Problem 2</h1>
+<p><span class="math display">\[X_t = Acos(\omega t) + Bsin(\omega t),\: t = 0,\pm1,\pm2,... \label{eq2}\]</span></p>
+<p>Equation <a href="#eq2" data-reference-type="ref" data-reference="eq2">[eq2]</a> is a process where <span class="math inline">\(A \: \&amp; \: B\)</span> are uncorrelated standard random normal variables (with mean of <span class="math inline">\(0\)</span> and variance of <span class="math inline">\(\sigma^2\)</span>), and <span class="math inline">\(\omega \in [0, 2\pi)\)</span> is a fixed frequency. We want to show that this process is stationary.<br />
+To do so, let’s evaluate the autocovariance of the process.</p>
+<p><span class="math display">\[\begin{split}
+    Cov(X_t,X_{t+k}) &amp; = \mathop{\mathrm{\mathbb{E}}}[ (X_t - \cancelto{0}{\mathop{\mathrm{\mathbb{E}}}}[X_t]) (X_{t+k} - \cancelto{0}{\mathop{\mathrm{\mathbb{E}}}}[X_{t+k}])] \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[ X_t X_{t+k} ]  \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[(Acos(\omega t) + Bsin(\omega t))(Acos(\omega (t+k)) + Bsin(\omega (t+k)))]  \\ 
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[A^2cos(\omega t)cos(\omega (t+k)) + B^2sin(\omega t)sin(\omega (t+k))] \\
+    &amp; \mathop{\mathrm{\mathbb{E}}}[AB](cos(\omega t)Bsin(\omega (t+k)) + sin(\omega t)cos(\omega (t+k)))  \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[A^2cos(\omega t)cos(\omega (t+k)) + B^2sin(\omega t)sin(\omega (t+k))] \\
+    &amp; \cancelto{0}{\mathop{\mathrm{\mathbb{E}}}[A]\mathop{\mathrm{\mathbb{E}}}[B]}(cos(\omega t)Bsin(\omega (t+k)) + sin(\omega t)cos(\omega (t+k)))  \\
+    &amp; = \mathop{\mathrm{\mathbb{E}}}[A^2]cos(\omega t)cos(\omega (t+k)) + \mathop{\mathrm{\mathbb{E}}}[B^2]sin(\omega t)sin(\omega (t+k))  \\
+    &amp; = \sigma^2(cos(\omega t)cos(\omega (t+k)) + sin(\omega t)sin(\omega (t+k)) )  \\
+    &amp; = \sigma^2 cos(\omega k) 
+    \end{split}\]</span></p>
+<p>Given that the covariance function is only dependent upon the time separation <span class="math inline">\(k\)</span> and not <span class="math inline">\(t\)</span> we have that <span class="math inline">\(X_t\)</span> is weakly stationary.</p>
+<h1 class="unnumbered" id="problem-3">Problem 3</h1>
+<p>We want to show that for every DAG there exists a topological ordering of the vertices. To do this we can take an inductive approach.</p>
+<ul>
+<li><p>Base case: Suppose we have a DAG with a single node <span class="math inline">\(v_1\)</span>. This single node graph has a topological order by default.</p></li>
+<li><p>Now assume G is a DAG and <span class="math inline">\(v_k\)</span> is a node with no outward edges. Then <span class="math inline">\(G - \{v_k\}\)</span> is also a DAG (we cannot create new cycles in a DAG by removing a node)</p></li>
+<li><p>Assume <span class="math inline">\(G - \{v_k\}\)</span> has a topological ordering</p></li>
+<li><p>Then we can create a topological order for <span class="math inline">\(G\)</span> by appending <span class="math inline">\(v_k\)</span> to the end of the topological order of <span class="math inline">\(G - \{v_k\}\)</span></p>
+<ul>
+<li><p>Since <span class="math inline">\(G - \{v_k\}\)</span> has a topological ordering <span class="math inline">\(v_1...v_{k-1}\)</span> so <span class="math inline">\(v_1...v_{k-1} v_k\)</span> becomes and ordering for G, because no edge <span class="math inline">\(v_i v_j\)</span> where <span class="math inline">\(i &gt; j\)</span> exists in the topological ordering for <span class="math inline">\(G - \{v_k\}\)</span> and <span class="math inline">\(i\)</span> cannot be <span class="math inline">\(k\)</span> since we chose <span class="math inline">\(v_k\)</span> to be a node with no outward edges</p></li>
+</ul></li>
+<li><p>Then by induction we have that our DAG <span class="math inline">\(G\)</span> must have a topological ordering</p></li>
+</ul>
+<p>We can also imagine altering the approach above by removing a node <span class="math inline">\(v_k\)</span> that has no incoming edges (rather than no outward), and creating a topological ordering for <span class="math inline">\(G\)</span> by appending <span class="math inline">\(v_k\)</span> to the front of the assumed order for <span class="math inline">\(G - \{v_k\}\)</span>.<br />
+One question that might arise is how we can ensure the existence of nodes with no outward or inward edges within our DAG. We can show that there exists such nodes by examining any given path <span class="math inline">\(P\)</span> with our DAG since the composition of such paths forms the graph. Let us assume that there exists a node <span class="math inline">\(v_k\)</span> with no incoming edges. To show that such a node exists we will assume that there also exists some edge <span class="math inline">\(&lt;p, v_k &gt;\)</span>. Then there is either some node <span class="math inline">\(p \notin P\)</span> that forms and edge <span class="math inline">\(&lt;p, v_k&gt;\)</span>, which cannot exist as it would violate the structure of the path <span class="math inline">\(P\)</span>. Alternatively there must be some node <span class="math inline">\(v_i \in P\)</span> that creates the edge <span class="math inline">\(&lt;v_i, v_k &gt;\)</span>, but this would create a cycle within our path which is impossible. Therefore, there cannot be an edge <span class="math inline">\(&lt;p, v_k&gt;\)</span> and <span class="math inline">\(v_k\)</span> is in fact a node with no incoming edges. Similarly we can show that there exist nodes with no outward edges by reversing the direction of the edges of our graph and then inspecting our new path <span class="math inline">\(P&#39;\)</span> since we must still have a no with no incoming edges and such nodes are the same nodes with no outgoing edges in the original path <span class="math inline">\(P\)</span>.<br />
+It is also interesting to note that we can strengthen our statement that every DAG has a topological ordering by observing that a topological ordering cannot have a cycle since no ordering <span class="math inline">\(v_1...v_i ... v_j ... v_l...v_k\)</span> can have a cycle <span class="math inline">\(v_i &lt; ... &lt; v_j &lt; ... &lt; v_l &lt; v_i\)</span>. Therefore it must take the form of a DAG.</p>
+</body>
+</html>
+
+<div id="header">
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
