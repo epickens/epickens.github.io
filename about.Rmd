@@ -2,7 +2,7 @@
 title: "About"
 ---
 
-I'm currently a PhD student in the computer science department of the University of Wisconsin-Madison. Before coming to Madison I was a predoctoral research fellow at MSRNYC, where I was lucky to be advised by David Rothschild. I also spent time at Cornell Tech (where I got a master's in ORIE) and Carleton College (where I earned a BA in Mathematics).
+I'm currently a PhD student in the Computer and Information Science department at the University of Pennsylvania. Before coming to Philadelphia, I was a predoctoral research fellow at MSRNYC, where I was lucky to be advised by David Rothschild. I also spent time at UW-Madison, Cornell Tech (where I got a master's in ORIE), and Carleton College (where I earned a BA in Mathematics).
 
 
 + [Main Content](index.html)
