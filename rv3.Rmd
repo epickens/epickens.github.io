@@ -1,8 +1,0 @@
----
-title: "rv3"
-author: "Elliot Pickens"
-output:
-  html_document:
-    includes:
-      before_body: _rv3.html
----

@@ -1,7 +1,0 @@
----
-title: "rv1"
-output:
-  html_document:
-    includes:
-      before_body: _rv1.html
----
